@@ -1,0 +1,118 @@
+<div ng-controller="contributorDetailsCtlr">
+	<p id="resultMessage" class="text-info"></p>
+	<h1 id="pageTitle">Contributor Details</h1>
+	<!-- {{(contributor | filter: {idContributor: '1'}).length}} -->
+
+	<div class="table-responsive">
+		<table class="table table-hover table-striped table-bordered">
+			<tr>
+				<th>Contributor Id</th>
+				<td>{{contributor.idContributor}}</td>
+			</tr>
+			<tr>
+				<th>Full Name</th>
+				<td>{{contributor.name}}</td>
+			</tr>
+			<tr>
+				<th>Mobile</th>
+				<td>{{contributor.mobile}}</td>
+			</tr>
+			<tr>
+				<th>Email</th>
+				<td>{{contributor.email}}</td>
+			</tr>
+			<tr>
+				<th>Gender</th>
+				<td>{{contributor.gender}}</td>
+			</tr>
+			<tr>
+				<th>Country</th>
+				<td>{{contributor.country}}</td>
+			</tr>
+			<tr>
+				<th>State</th>
+				<td>{{contributor.state}}</td>
+			</tr>
+			<tr>
+				<th>City/Town</th>
+				<td>{{contributor.city}}</td>
+			</tr>
+			<tr>
+				<th>Street</th>
+				<td>{{contributor.street}}</td>
+			</tr>
+			<tr>
+				<th>House No.</th>
+				<td>{{contributor.house_no}}</td>
+			</tr>
+			<tr>
+				<th>Zip Code</th>
+				<td>{{contributor.zipcode}}</td>
+			</tr>
+			<tr>
+				<th>View Details</th>
+				<td><a href="/Contributor/{{contributor.idContributor}}">Click
+						here</a></td>
+			</tr>
+		</table>
+	</div>
+	<div ng-if="contributor.length==0">
+		<p class="text-danger">There are no records to display.</p>
+	</div>
+
+
+	<!-- ******************************************************************************************* -->
+
+	<h1>Contributor Payments</h1>
+	<div ng-if="contributor.contributorPayments.length>0">
+		
+		Records per Page:
+		<input type="number" ng-model="rowCount" min="1"
+			max="{{contributor.contributorPayments.length}}">
+			
+			
+			
+		<div class="table-responsive">
+
+			<table class="table table-hover table-striped table-bordered">
+				<tr>
+					<th>Payment Id</th>
+					<th>Payment Amount</th>
+					<th>Payment Date</th>
+					<th>Payment Description</th>
+					<th>Payment Mode</th>
+					<th># Receipt No</th>
+					<th>Update</th>
+					<th>Delete</th>
+
+				</tr>
+
+				<tr ng-repeat="payments in contributor.contributorPayments">
+					<td>{{payments.idContributorPayment}}</td>
+					<td>{{payments.payment_amount}}</td>
+					<td>{{payments.payment_date}}</td>
+					<td>{{payments.payment_desc}}</td>
+					<td>{{payments.payment_mode}}</td>
+					<td>{{payments.receipt_no}}</td>
+					<td><a href="Update/Payment/${contributor.idContributor}.htm">Click
+							here</a></td>
+					<td><a href="Delete/Payment/${contributor.idContributor}.htm"
+						id="confirmAlert">Click here</a></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+	<div
+		ng-if="contributor.contributorPayments.length==0 || contributor.length==0">
+		<p class="text-danger">There are no records to display.</p>
+	</div>
+
+
+
+
+
+
+
+	</tr>
+</div>

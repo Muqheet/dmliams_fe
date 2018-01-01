@@ -1,0 +1,42 @@
+<script>
+  //remove container class on homepage to expand across the full width
+  $(document).ready(function() {
+    //remove default container class
+    $('section.container').removeClass();
+
+    // //make animation by toglling classes to home BgImage stage
+    // $('#donateStgBtn')
+    //   .removeClass('btn-lg font-weight-bold')
+    //   .toggleClass('btn-lg font-weight-bold', 2000, function() {
+    //     $(this).fadeOut();
+    //     $(this).fadeIn(2000);
+    //   });
+
+
+    // var images = ['IMG-1','IMG-2','IMG-3','IMG-4','IMG-5','IMG-6'];
+    // $(images).each(function(i) {
+    // 	$('#slideshow').append('<div><img src="/img/' +images[i]+ '.jpg"/></div>');
+    // });
+    //
+    // $("#slideshow > div:gt(0)").hide();
+    //
+    // setInterval(function() {
+    //   $('#slideshow > div:first')
+    //     .fadeOut(1000)
+    //     .delay(1000)
+    //     .next()
+    //     .fadeIn(1000)
+    //     .end()
+    //     .appendTo('#slideshow');
+    // }, 3000);
+
+  });
+</script>
+<!-- home -->
+<div ng-include="home" id="home"></div>
+
+<!-- about -->
+<div ng-include="about" id="about"></div>
+
+<!-- contact -->
+<div ng-include="contact" id="contact"></div>

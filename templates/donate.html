@@ -1,0 +1,105 @@
+<script>
+	$(document).ready(function() {
+		$('#insideDonate table').addClass('table  table-hover');
+		var quotes = ['The poor and the sick are the heart of God. In serving them, we serve God',
+			'Only a life lived for others is a life worth while',
+			'We all can do more, To help the poor',
+			'When fate hands us money, let\'s help poor people',
+			'If u can\'t feed a hundred people then feed just one',
+			'No one has ever become poor by giving',
+			'Never worry about numbers. Help one person at a time, and always start with the person nearest you'
+		];
+
+		toggleQuotes();
+
+		function toggleQuotes() {
+			var index = 0; // index of the currently displayed
+			$("#donateQuotes").text('"' + quotes[0] + '"'); // start by showing first index
+
+			(function animate() { // the function responsibe for the animation
+				$("#donateQuotes")
+					.mouseenter(function() {
+						$(this).addClass('text-primary text-uppercase ')
+					})
+					.mouseleave(function() {
+						$(this).removeClass('text-primary text-uppercase')
+					})
+					.fadeOut(2000, function() { // first fadeOut #hellos
+						index = (index + 1) % quotes.length; // when fadeOut complete, increment the index (check if go beyond the length of the array)
+						this.textContent = '"' + quotes[index] + '"'; // change text accordingly
+					})
+					.fadeIn(500, animate)
+					.delay(2000); // then fadeIn. When fadeIn finishes, call animate again
+			})();
+		}
+
+	});
+</script>
+
+<div id="insideDonate" class="card bg-light">
+	<h2 class="card-header m-0">Donate</h2>
+	<div class="card-body">
+
+		<h5 class="text-center" style="color: #111; font-style: italic; text-transform: capitalize;" id="donateQuotes">The poor and the sick are the heart of God. In serving them, we serve God</h5>
+		<br>
+		<p class="bs-callout bs-callout-info">You can directly transfer funds through Net Banking or any other medium as per following details</p>
+
+		<table class="text-center font-weight-bold" style="background: linear-gradient(to top, #6699ff 0%, #99ccff 100%);">
+			<tr class="h2 bg-dark text-light"><td colspan="2">INDIA -&nbsp; <img src="/img/IND-flag.jpg"/ style="height: 43px; width: 55px;" class="pb-1"></td></tr>
+			<tr>
+				<th>Beneficiary Account Name</th>
+				<td>Al Imdaad Zakath Society</td>
+			</tr>
+			<tr>
+				<th>Account Number</th>
+				<td>62498576144</td>
+			</tr>
+			<tr>
+				<th>Bank Name</th>
+				<td>State Bank of India</td>
+			</tr>
+			<tr>
+				<th>Branch Name</th>
+				<td>Civil Line, Narayanpet</td>
+			</tr>
+			<tr>
+				<th>IFSC for IMPS / RTGS / NEFT</th>
+				<td>SBIN0020186</td>
+			</tr>
+
+			<tr class="h2 bg-dark text-light"><td colspan="2">USA -&nbsp; <img src="/img/USA-flag.jpg"/ style="height: 43px; width: 55px;" class="pb-1"></td></tr>
+			<tr>
+				<th>Account Number</th>
+				<td>0982905518</td>
+			</tr>
+			<tr>
+				<th>Routing Number</th>
+				<td>111993776</td>
+			</tr>
+			<tr>
+				<th>Bank Name</th>
+				<td>Chase Bank</td>
+			</tr>
+			<tr>
+				<th>Cheques can be made payable to</th>
+				<td>Faheemuddin Ahmed</td>
+			</tr>
+			<tr>
+				<th>Cheques can be sent to</th>
+				<td>6259 North Mozart Street, Unit 1 N Chicago, Illinois - 60659</td>
+			</tr>
+
+		</table>
+
+		<div class="bs-callout bs-callout-default d-none">After making payment online, please email us your details to <u>payments@AlimdaadSociety.com</u> in the following format so that we can recognise your donation.</div>
+
+		<div class="border border-secondary rounded-top p-2 pl-3 d-none">
+			<p><b>Name:</b> Your Name</p>
+			<p><b>Mobile:</b> Your Mobile Number</p>
+			<p><b>Email:</b> Your Email</p>
+			<p><b>Address:</b> Your Address</p>
+			<p><b>Amount Donated:</b> Amount in Numbers (Ex: 10000)</p>
+			<p><b>Date of Donation:</b> DD/MM/YYYY</p>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,53 @@
+<nav class="navbar-inverse">
+
+	<div class="navbar-header">
+		<a class="navbar-brand noBottomBorder" href="#"
+			style="border: 1px solid#; font-size: 30px; font-weight: bolder; font-family: sans-serif; backgroundNO: linear-gradient(#999, #000); word-break: break-all; height: auto; font-stretch: extra-condensed;">
+			
+			
+			<span style="color: orange;">ALIMDAAD</span><span
+			style="color: white;">SOCIETY</span><span style="color: #eee;">.</span><span
+			style="color: #32CD32;">COM</span>
+			
+			
+		</a>
+
+		<button type="button" class="navbar-toggle" data-toggle="collapse"
+			data-target="#myNavbar">
+			<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+				class="icon-bar"></span>
+		</button>
+	</div>
+
+	<div class="collapse navbar-collapse" id="myNavbar">
+
+		<ul class="nav navbar-nav navbar-right">
+
+			<li><a href="/"><span class="glyphicon glyphicon-home"></span>
+					Home</a></li>
+
+			<li><a href="/#about" ng-click="scrollTo('about')"><span
+					class="glyphicon glyphicon-info-sign"></span> About</a></li>
+
+			<li><a href="/#contact" ng-click="scrollTo('contact')"><span
+					class="glyphicon glyphicon-phone"></span> Contact</a></li>
+
+			<li><a href="/#!Activities"><span
+					class="glyphicon glyphicon-list-alt"></span> Activities</a></li>
+
+			<li class="dropdown"><a class="dropdown-toggle"
+				data-toggle="dropdown" href=""><span
+					class="glyphicon glyphicon-hand-down"></span> Donate &#9660;</a>
+				<ul class="dropdown-menu">
+					<li><a href="/Donate">Donate Now</a></li>
+					<li><a href="/VerifyDonation">Verify My Donation</a></li>
+					<li><a href="/ZakathCalc">Zakath Calculator</a></li>
+				</ul></li>
+			<li><a href="/Login" routerLink="/Login" routeLinkActive="active" [routerLinkActiveOptions]="{exact:true}"><span
+					class="glyphicon glyphicon-log-in"></span>
+					Login&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+
+		</ul>
+
+	</div>
+</nav>

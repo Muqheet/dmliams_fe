@@ -1,0 +1,98 @@
+<div ng-controller="contributorPaymentsCtlr">
+	<nav aria-label="breadcrumb" role="navigation">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="/secure/Dashboard">Dashboard</a></li>
+			<li class="breadcrumb-item"><a href="/secure/Contributors">Contributors</a></li>
+			<li class="breadcrumb-item active" aria-current="page">Contributor Payments
+			</li>
+		</ol>
+	</nav>
+
+	<!-- Add/Edit Contributor Modal -->
+	<div ng-include="ContributorPaymentsModal"></div>
+	<div ng-include="DeleteModal"></div>
+
+	<table id="contributorPaymentsTbl" class="table table-hover table-striped table-bordered text-center" style="width: 100%;">
+		<thead>
+			<tr>
+				<th>#Payment Id</th>
+				<th>Payment Amount</th>
+				<th>Payment Date</th>
+				<th>Payment Description</th>
+				<th>Payment Mode</th>
+				<th>Receipt No</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+
+</div>
+<script type="text/javascript">
+	$(document).ready(function() {
+		var url = window.location.pathname;
+		var contrId = url.substring(url.lastIndexOf('/') + 1);
+		//console.log(contrId)
+		var tableData = {
+			//Table related
+			columns : [
+		    	{data: 'contributorpaymentid'},
+		    	{data: 'payment_amount'},
+		    	{data: 'payment_date'},
+		    	{data: 'payment_desc'},
+		    	{data: 'payment_mode', sortable: false},
+		    	{data: 'receipt_no'}
+		    ],
+			tableId : 'contributorPaymentsTbl',
+			createdRow: function(row, data, dataIndex){	//To add id in every tr
+		    	$(row).attr('id', data.contributorpaymentid);
+		    },
+			recordId: 'contributorpaymentid',
+
+			//ajax related
+			getAjax : [domainName+'/api/ContributorPayments/'+contrId+ '/', 'get'],
+			addAjax : [domainName+'/api/ContributorPayment/' +contrId+ '/', 'post'],
+			editAjax : [domainName+'/api/ContributorPayment/' +contrId+ '/', 'put'],
+			deleteAjax : [domainName+'/api/ContributorPayment/', 'delete'],
+
+			//form & validation
+			formId : 'formId',
+			validationRules : {
+				payment_amount: {
+					required: true,
+					minlength: 2,
+					maxlength: 50,
+				}
+			}
+
+		}
+		//Function is called
+		createTable(tableData);
+
+		//apply modal classes
+		(function applyModalClasses(){
+			$formIp = $('#formId > div > :input');
+			$formGrp = $('#formId > div');
+			$formLabel = $('#formId > div > label');
+
+			if(! $formIp.hasClass('form-control col-md')) {
+				$formIp.addClass('form-control col-md');
+				$formGrp.addClass('form-group row');
+				$formLabel.addClass('col-md-4 p-0');
+			}
+		})();
+
+		//Clear data on modal close
+		(function modalOperations() {
+			$oprModal = $('#oprModal');
+			$oprModal.on('hidden.bs.modal', function() {
+				//clearFields();
+				$('#formId label.invalid-feedback, #formId label.valid-feedback').remove();
+			});
+			$oprModal.on('shown.bs.modal', function() {
+				$('#formId input').eq(0).focus();
+			});
+		})();
+
+	});
+</script>

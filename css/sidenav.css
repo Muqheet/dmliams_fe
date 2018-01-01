@@ -1,0 +1,17 @@
+ul.sidenav
+{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	background: #b2b2b2;
+	position: fixed;
+	top: 62px;
+	height: 100%;
+}
+ul.sidenav li
+{
+	float: none;
+	border-left: 1px solid #bbb;
+	padding: 6px 6px 6px 5px;
+}
+

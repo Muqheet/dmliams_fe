@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Alimdaad.. Serving The Poor</title>
+		<base href="/" />
+		
+		<!-- BootStrap CSS -->
+<!-- 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" />
+ -->		<!-- DataTables CSS-->
+<!-- 		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.16/datatables.min.css"/>
+ -->		
+		<!-- CSS Styles -->
+		<!-- <link rel="stylesheet" href="/css/topnav.css" />
+		<link rel="stylesheet" href="/css/Styles.css" /> -->
+		
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		
+		<!-- AngularJS scripts-->
+		<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.min.js"></script>
+		<script	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.min.js"></script>
+		<script src="/js/angularApp.js"></script>
+		<script src="/js/angularService.js"></script> -->
+		
+		<!-- BootStrap scripts -->
+		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script> -->
+		<!-- DataTables JS-->
+		<!-- <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.16/datatables.min.js"></script>
+		<script type="text/javascript" src="/js/ajaxDatatablesCRUD.js"></script> -->
+		
+		
+		<script type="text/javascript">
+			$(document).ready(function() {
+				myData = [];
+				var i = 0;
+
+				$.ajax({
+		            url: 'https://geodata.solutions/restapi?country=india&orderby=alpha',
+		            type: 'POST',
+		            crossDomain: true,
+		            success: function (data) {
+		            	console.log(data) 
+						
+						$(data.details.regionalBlocs).each(function() {
+							myData.push(this.state_name);
+							i++;
+						})
+						console.log(JSON.stringify(myData));
+						console.log(i)
+		            },
+		            error: function (xhr, status) {
+		                alert("error");
+		            }
+		        });
+				
+					
+			});
+		</script>
+		
+		
+	</head>
+	<body>
+		
+	</body>
+</html>

@@ -1,0 +1,41 @@
+<div ng-controller="loginCtlr">
+
+	<ul class="nav nav-tabs">
+		<li class="nav-item">
+			<a class="nav-link active" data-toggle="tab" href="#login">Login</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" data-toggle="tab" href="#register">Register</a>
+		</li>
+	</ul>
+	
+	<!-- Tab panes -->
+	<div class="tab-content">
+		<div id="login" class="tab-pane active" ng-include="loginTab" ></div>
+		<div id="register" class="tab-pane fade" ng-include="registerTab" ></div>
+	</div>
+	
+</div>
+
+<script>
+	$(document).ready(function() {
+		
+		
+		$('#loginBtn').click(function() {
+	    	$(this).html('Processing...');
+	    	$(this).attr('disbled', 'disabled');
+			$.ajax({
+				url: "/auth-login",
+				method: "post",
+				data: $('#loginForm').serialize(),
+				success: function(data) {
+					/* alert(data); */
+				},
+				error: function(XMLHttpRequest, textStatus, errorThrown ) {
+					/* alert('An ' + textStatus + ' occured ' + errorThrown); */
+				} 
+			});
+		});
+		
+	});
+</script>

@@ -1,0 +1,27 @@
+<script>
+	$(document).ready(function() {
+		$('#insideAbout > div').addClass('col-md');
+		$('#insideAbout > div > h4').css({
+			'color': '#111'
+		}); /* $('#insideAbout div p').addClass('card-body'); */
+	});
+</script>
+<!-- style="background: linear-gradient(to top right, #0099cc 0%, #ccccff 100%);" -->
+<div class="p-5 bg-light border">
+	<div id="insideAbout" class="text-center row">
+		<div>
+			<h4>Who We Are</h4>
+			<p>We are a Small Team working for over 10 years for thefinancial development of Muslim poor and needy people in theSociety. We are passionate about what we do and strive to achieve excellence.</p>
+		</div>
+		<div>
+			<h4>What We Do</h4>
+			<p>We work for the uplifment of Muslim poor and needy people byproviding financial assistance in marriages, education, treatmentaid and pension for the older and widow women.</p>
+		</div>
+		<div>
+			<h4>How We do</h4>
+			<p>We beleive in Collective System of Zakath, i.e we collect donations(zakath) throught the year mostly in the month of Ramazan from the wealthy people and spend among the needs of Muslim poor people.</p>
+		</div>
+	</div>
+	<div class="text-center"><a href="/About" class="btn btn-outline-dark mt-3 font-weight-bold">More About Us</a></div>
+</div>
+<div ng-include="galleryCarousel"></div>

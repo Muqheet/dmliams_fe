@@ -1,0 +1,34 @@
+<nav aria-label="breadcrumb" role="navigation">
+	<ol class="breadcrumb">
+    	<li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+  	</ol>
+</nav>
+<div id="dashboard" >
+<div>
+	<a href="/secure/Contributors">Contributors</a>
+</div>
+<div>
+	<a href="/secure/Contributors">Pension Applications</a>
+</div>
+<div>
+	<a href="/secure/Contributors">Marriage Applications</a>
+</div>
+<div>
+	<a href="/secure/Contributors">Education Applications</a>
+</div>
+<div>
+	<a href="/secure/Contributors">Treatment Applications</a>
+</div>
+<div>
+	<a href="/secure/Contributors">Reports & Analysis</a>
+</div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#dashboard div').addClass('border border-secondary text-center p-3');
+		$('#dashboard div').css('background', 'linear-gradient(to bottom right, #003366, #0099cc)');
+		//$('#dashboard div:last').removeClass('border-bottom-0');
+		$('#dashboard div a').addClass('text-light text-uppercase');
+
+	});
+</script>
