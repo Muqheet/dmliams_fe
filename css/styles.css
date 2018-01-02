@@ -23,6 +23,21 @@ body, html {
 
 /* used for home background stage image */
 
+.mainHeading {
+  background: linear-gradient(#999, #ddd);
+  color: rgba(0, 0, 0, 1);
+  text-transform: uppercase;
+  text-shadow: 2px solid black;
+  font-size: 30px;
+}
+#collapsibleNavbar li a:hover{
+  border-bottom: 3px solid rgb(59, 97, 153);
+  font-size: 18px;
+}
+#collapsibleNavbar li a:active{
+  background: linear-gradient(#999, #ddd);
+  border-radius: 10px 10px 0px 0;
+}
 .homeStageBgImg {
   background: #4d9abf url('/img/POVERTY-fb.jpg') center center no-repeat;
   background-size: cover;
