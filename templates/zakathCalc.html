@@ -1,14 +1,13 @@
-<div ng-controller="zakathCtlr" class="card">
+<div ng-controller="zakathCtlr">
+	<div class="">
 	<h2 class="card-header mainHeading">Zakath Calculator</h2>
-	<div class="card-body">
+
 		<p class="bs-callout">The Zakath Calculator is given only for
 			your reference. Please don't rely on this alone for your Zakth
 			Calculations.</p>
 
-	<br>
 	<form class="table-responsive">
-		<table class="table table-hover table-striped"
-			style="border: 1px solid #999;">
+		<table class="table table-hover table-striped" style="border: 1px solid #ddd;">
 			<!-- <tr>
 					<th colspan="2" style="text-align: center;">
 						Name:&nbsp;<input type="text" placeholder="Name" >&nbsp;&nbsp;&nbsp;
@@ -18,7 +17,7 @@
 
 			<tr>
 				<th colspan="2" class="bg-info text-center">
-					Total Assets / Credit</th>
+					Total Assets / Credit (+)</th>
 			</tr>
 
 			<tr>
@@ -102,7 +101,7 @@
 
 			<tr>
 				<th colspan="2" class="bg-warning text-center">
-					Total Debts</th>
+					Total Debts (-)</th>
 			</tr>
 
 			<tr>
@@ -119,11 +118,11 @@
 
 			<tr>
 				<th colspan="2"class="bg-success text-center">
-					Total Zakatable & Payable</th>
+					Total Zakatable & Payable (=)</th>
 			</tr>
 
 			<tr>
-				<th style="color: green;">Total Amount Zakatable</th>
+				<th>Total Amount Zakatable</th>
 				<td><input value="{{zakatable}}" class="form-control"
 					type="number" readonly="readonly"> <!-- value="{{(cash + balance + fd + shares + bonds + lic_pli+ pf + gold + silver + money_owed + business +prop + ocredit -  debts - odebts)}}" -->
 				</td>
