@@ -2,19 +2,18 @@
   display: none !important;
 }
 
-/* @font-face {
+@font-face {
    font-family: myFirstFont;
    src: url(sansation_light.woff);
 }
 @font-face {
     font-family: myFirstFont;
     src: url(sansation_bold.woff);
-    font-weight: bold;
 }
 
 body, html {
    font-family: myFirstFont;
-} */
+}
 
 /* body, html {
     font-family: ff-din-web-pro, Helv	etica, Arial, sans-serif;
@@ -23,6 +22,14 @@ body, html {
 
 /* used for home background stage image */
 
+.moon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  box-shadow: 15px 15px 0 0 #545960;
+  position: relative;
+  display: inline-block;
+}
 .mainHeading {
   background: linear-gradient(#999, #ddd);
   color: rgba(0, 0, 0, 1);
@@ -30,14 +37,17 @@ body, html {
   text-shadow: 2px solid black;
   font-size: 30px;
 }
-#collapsibleNavbar li a:hover{
+
+#collapsibleNavbar li a:hover {
   border-bottom: 3px solid rgb(59, 97, 153);
   font-size: 18px;
 }
-#collapsibleNavbar li a:active{
+
+#collapsibleNavbar li a:active {
   background: linear-gradient(#999, #ddd);
   border-radius: 10px 10px 0px 0;
 }
+
 .homeStageBgImg {
   background: #4d9abf url('/img/POVERTY-fb.jpg') center center no-repeat;
   background-size: cover;
