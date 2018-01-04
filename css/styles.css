@@ -27,7 +27,15 @@ body, html {
   max-width: 100%;
   width=210px;
   height=120px;
-  vertical-align: middle;
+  border: 1px solid #eee;
+  /* vertical-align: middle; */
+}
+
+.img-gal:hover {
+  box-shadow: 2px 2px 5px 5px #999;
+  border-radius: 2px;
+  /* border: 2px solid black; */
+  cursor: pointer;
 }
 
 .moon {
