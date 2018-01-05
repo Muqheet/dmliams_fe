@@ -61,6 +61,7 @@ myApp.controller("homeCtlr", function($scope, $location, $anchorScroll) {
 	$scope.about = "/views/aboutView.html";
 	$scope.contact = "/views/contactView.html";
 	$scope.galleryCarousel = "/views/galleryCarouselView.html";
+	$scope.founderPortfolio = "/views/founderView.html";
 	$scope.loginTab = "/views/loginTabView.html";
 	$scope.registerTab = "/views/registerTabView.html";
 	$scope.DeleteModal = "/secureViews/DeleteModal.html";

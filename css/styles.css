@@ -12,9 +12,28 @@
   src: url(sansation_bold.woff);
 }
 
-body, html {
-  font-family: myFirstFont;
+
+@media screen and (min-width: 580px){
+	.container {
+	box-shadow: 2px 2px 5px 5px #eee;
+	margin-top: 40px;
+	margin-bottom: 50px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	}
 }
+.container {
+	min-height: 43vh;
+	margin-top: 30px;
+	margin-bottom: 35px;
+}
+.nav-active {
+	border-bottom: 3px solid blue;
+	background: #ccc;
+	border-radius: 10px;
+	color: #100;
+}
+
 
 /* body, html {
     font-family: ff-din-web-pro, Helv	etica, Arial, sans-serif;
@@ -34,8 +53,45 @@ body, html {
 .img-gal:hover {
   box-shadow: 2px 2px 5px 5px #999;
   border-radius: 2px;
-  /* border: 2px solid black; */
   cursor: pointer;
+  animation: shake 0.5s;
+  animation-iteration-count: 0.5;
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(1px, 1px) rotate(0deg);
+  }
+  10% {
+    transform: translate(-1px, -2px) rotate(-1deg);
+  }
+  20% {
+    transform: translate(-3px, 0px) rotate(1deg);
+  }
+  30% {
+    transform: translate(3px, 2px) rotate(0deg);
+  }
+  40% {
+    transform: translate(1px, -1px) rotate(1deg);
+  }
+  50% {
+    transform: translate(-1px, 2px) rotate(-1deg);
+  }
+  60% {
+    transform: translate(-3px, 1px) rotate(0deg);
+  }
+  70% {
+    transform: translate(3px, 1px) rotate(-1deg);
+  }
+  80% {
+    transform: translate(-1px, -1px) rotate(1deg);
+  }
+  90% {
+    transform: translate(1px, 2px) rotate(0deg);
+  }
+  100% {
+    transform: translate(1px, -2px) rotate(-1deg);
+  }
 }
 
 .moon {
@@ -117,26 +173,6 @@ section.ng-enter {
 
 section.ng-enter.ng-enter-active {
   opacity: 1;
-}
-
-.arrow-up {
-  width: 0;
-  height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-buttom: 10px solid #d2d2d2;
-  display: inline-block;
-  cursor: pointer;
-}
-
-.arrow-down {
-  width: 0;
-  height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 10px solid #d2d2d2;
-  display: inline-block;
-  cursor: pointer;
 }
 
 .bs-callout {
