@@ -42,6 +42,10 @@
 
 /* used for home background stage image */
 
+.amazingslider-nav-1{
+  background: #aaa;
+}
+
 .img-gal {
   max-width: 100%;
   width=210px;
