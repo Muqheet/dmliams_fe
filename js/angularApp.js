@@ -42,9 +42,6 @@ myApp.config(function($routeProvider, $locationProvider) {
 	.when("/secure/UnderDevlopment", {
 		template : "<b class=\"text-center\">Under Development</b>",
 	})
-	.when("/:url_to_redirect", {
-		controller: "redirectCtlr"
-	})
 	.otherwise({
 		template : "<h1>Oops! Page Not Found</h1>"
 	});
@@ -54,10 +51,6 @@ myApp.config(function($routeProvider, $locationProvider) {
 
 
 //*****************************Home************************************
-myApp.controller("redirectCtlr", function($location, $scope) {
-	$scope.url = url_to_redirect;
-	$location.path("/#!/"+url);
-});
 myApp.controller("homeCtlr", function($scope, $location, $anchorScroll) {
 
 	$scope.scrollTo = function(scrollLocation) {
