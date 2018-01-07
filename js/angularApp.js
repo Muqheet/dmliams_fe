@@ -56,7 +56,7 @@ myApp.config(function($routeProvider, $locationProvider) {
 //*****************************Home************************************
 myApp.controller("redirectCtlr", function($location, $scope) {
 	$scope.url = url_to_redirect;
-	$location.path("/"+url);
+	$location.path("/#!/"+url);
 });
 myApp.controller("homeCtlr", function($scope, $location, $anchorScroll) {
 
