@@ -22,7 +22,8 @@ function createTable(tableData) {
   (function insertCrudBtns() {
 
     $('#' + tableData.tableId).before(
-      '<div class="bs-callout bs-callout-info">' +
+      '<div class="bs-callout bs-callout-info alert alert-dismissable fade show">' +
+      '<button type="button" class="close bg-light" data-dismiss="alert">&times;</button>'+
       '<p><span class="badge badge-secondary">1</span> Click on the <span class="text-primary">Add New</span> button to add a new record</p>' +
       '<p><span class="badge badge-secondary">2</span> Click on the table row to select / deselect a record</p>' +
       '<p><span class="badge badge-secondary">3</span> Only one record can be selected at a time to <span class="text-info">Edit</span> or <span class="text-danger">Delete</span></p>' +
@@ -31,9 +32,9 @@ function createTable(tableData) {
     );
     $('#' + tableData.tableId).before(
       '<div id="crudBtns" class="sticky-top mb-4 text-center bg-light">' +
-      '<button id="addBtn" class="btn btn-primary mr-1 border	border-dark" >Add New <i class="fa fa-plus-circle"></i></button>' +
-      '<button id="editBtn" class="btn btn-info mr-1 border	border-dark" disabled="disabled">Edit <i class="fa fa-edit"></i></button>' +
-      '<button id="deleteBtn" class="btn btn-danger mr-1 border	border-dark" disabled="disabled">Delete <i class="fa fa-remove"></i></button>' +
+      '<button id="addBtn" class="btn btn-primary mr-1 " >Add New <i aria-hidden="true" class="fa fa-plus-circle"></i></button>' +
+      '<button id="editBtn" class="btn btn-info mr-1 " disabled="disabled">Edit <i aria-hidden="true" class="fa fa-edit"></i></button>' +
+      '<button id="deleteBtn" class="btn btn-danger mr-1 " disabled="disabled">Delete <i aria-hidden="true" class="fa fa-remove"></i></button>' +
       '</div>'
     );
   })();
@@ -41,10 +42,10 @@ function createTable(tableData) {
   function populateTable(data) {
     //console.log(tableData)
     dataTableObj = $('#' + tableData.tableId).DataTable({
+      destroy: true,
       data: data,
       columns: tableData.columns,
       createdRow: tableData.createdRow,
-      destroy: true,
       order: [
         [0, "desc"]
       ],
@@ -124,6 +125,9 @@ function createTable(tableData) {
   function addRecord() {
 
     if (form.valid()) {
+      currentBtnId = $(this).attr('id');
+      addLoadingIcon(currentBtnId);
+
       var formData = $('#' + tableData.formId).serializeFormJSON();
       console.log('form data: ' + formData);
 
@@ -143,6 +147,9 @@ function createTable(tableData) {
         },
         error: function() {
           alert('Error occured');
+        },
+        complete: function() {
+          removeLoadingIcon(currentBtnId);
         }
       });
     }
@@ -164,9 +171,7 @@ function createTable(tableData) {
           dataTableObj.row('tr.' + rowClickedClass).data(JSON.parse(formData)).draw();
           $('tr.' + rowClickedClass)
             .css('color', 'green')
-            .animate({
-              color: 'black'
-            }, 'slow', disableBtns);
+            .animate( {color: '#000'}, disableBtns);
         },
         error: function() {
           alert('Error occured');
@@ -176,6 +181,8 @@ function createTable(tableData) {
   }
 
   function deleteRecord() {
+    currentBtnId = $(this).attr('id');
+    addLoadingIcon(currentBtnId);
     $.ajax({
       url: tableData.deleteAjax[0] + selectedRowId(),
       method: tableData.deleteAjax[1],
@@ -195,6 +202,9 @@ function createTable(tableData) {
         console.log(textStatus + ' ' + errorThrown + ' ' + XMLHttpRequest);
         $('#deleteModal').modal('hide');
         alert(textStatus + ' occured ' + errorThrown);
+      },
+      complete: function() {
+        removeLoadingIcon(currentBtnId);
       }
     });
   }
@@ -205,6 +215,7 @@ function createTable(tableData) {
     // 	submitHandler: function() {
     //
     // },
+    ignore: '*',
     errorClass: "invalid-feedback row col-md-12 pt-0",
     validClass: "valid-feedback row col-md-12 pt-0",
     highlight: function(element, errorClass, validClass) {
@@ -251,6 +262,16 @@ function createTable(tableData) {
     }
   }
 
+  function addLoadingIcon(id) {
+    $('#'+id).attr('disabled','disabled');
+    var _temp=$('#'+id).text();
+    $('#'+id).html(_temp+' <img src="/img/loading2_circlefill.svg" height="20" id="loading_icon" class="m-0"/>');
+  }
+
+  function removeLoadingIcon(id) {
+    $('#'+id).removeAttr('disabled');
+    $('#loading_icon').remove();
+  }
   //End of createTable
 }
 

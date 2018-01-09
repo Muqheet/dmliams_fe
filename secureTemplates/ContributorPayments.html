@@ -17,7 +17,7 @@
 			<tr>
 				<th>#Payment Id</th>
 				<th>Payment Amount</th>
-				<th>Payment Date</th>
+				<th>Payment Date <small>[YYYY-MM-DD]</small></th>
 				<th>Payment Description</th>
 				<th>Payment Mode</th>
 				<th>Receipt No</th>
@@ -28,6 +28,22 @@
 	</table>
 
 </div>
+
+<!-- DataTables CSS-->
+<link rel="stylesheet" href="/css/DataTables.min.css" />
+<!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.16/datatables.min.css"/> -->
+
+<!-- jQuery Validation Plugin -->
+<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script> -->
+<script src="/js/jquery.validate.min.js"></script>
+
+<!-- DataTables JS-->
+<!-- <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.16/datatables.min.js"></script> -->
+<script src="/js/datatables.min.js"></script>
+<script src="/js/ajaxDatatablesCRUD.js"></script>
+<script src="/js/countryStateCity.js"></script>
+<script src="/js/myJs.js"></script>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		var url = window.location.pathname;
@@ -37,7 +53,7 @@
 			//Table related
 			columns : [
 		    	{data: 'contributorpaymentid'},
-		    	{data: 'payment_amount'},
+		    	{data: 'payment_amount', render: $.fn.dataTable.render.number( ',', '.', 0, '&#8377;' ) },
 		    	{data: 'payment_date'},
 		    	{data: 'payment_desc'},
 		    	{data: 'payment_mode', sortable: false},

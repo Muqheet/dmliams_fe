@@ -33,10 +33,13 @@
 	border-radius: 10px;
 	color: #100;
 }
+.tab-highliter:hover {
+  border-bottom: 3px solid #2d5ca8;
+}
 
 
 /* body, html {
-    font-family: ff-din-web-pro, Helv	etica, Arial, sans-serif;
+    font-family: ff-din-web-pro, Helvetica, Arial, sans-serif;
 }
  */
 

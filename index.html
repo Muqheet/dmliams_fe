@@ -1,1 +1,54 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Alimdaad.. Serving The Needy Round The Clock</title><base href="/" /><!-- BootStrap CSS --><link rel="stylesheet" href="/css/bootstrap.min.css" /><!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" /> --><!-- font-awesome CSS --><!-- <link rel="stylesheet" href="/css/font-awesome.min.css" /> --><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" /><!-- DataTables CSS--><!-- <link rel="stylesheet" href="/css/DataTables.min.css" /> --><!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.16/datatables.min.css"/> --><!-- CSS Styles --><link rel="stylesheet" href="/css/topnav.css" /><link rel="stylesheet" href="/css/styles.css" /><!-- jQuery library --><!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> --><script src="/js/jquery.min.js"></script><!-- jQuery Ui --><!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script> --><!-- <script src="/js/jquery-ui.min.js"></script> --><!-- AngularJS scripts--><!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script> --><script src="/js/angular.min.js"></script><!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.min.js"></script> --><script src="/js/angular-route.min.js"></script><!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.min.js"></script> --><script src="/js/angular-animate.min.js"></script><script src="/js/angularApp.js"></script><!-- <script src="/js/angularService.js"></script> --><!-- BootStrap scripts --><!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script> --><script src="/js/popper.min.js"></script><!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script> --><script src="/js/bootstrap.min.js"></script><!-- jQuery Validation Plugin --><!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script> --><!-- <script src="/js/jquery.validate.min.js"></script> --><!-- DataTables JS--><!-- <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.16/datatables.min.js"></script> --><!-- <script src="/js/datatables.min.js"></script> --><!-- <script src="/js/ajaxDatatablesCRUD.js"></script> --><!-- <script src="/js/countryStateCity.js"></script> --><!-- <script src="/js/myJs.js"></script> --></head><body ng-app="myApp" ng-controller="homeCtlr" id="top"><!-- header --><div ng-include="header"></div><!-- View injected Here --><section ng-view class="container"></section><!-- footer --><div ng-include="footer"></div></body></html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Alimdaad.. Serving The Needy Round The Clock</title>
+  <base href="/" />
+  <!-- BootStrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css" />
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" /> -->
+  <!-- font-awesome CSS -->
+  <!-- <link rel="stylesheet" href="/css/font-awesome.min.css" /> -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+  <!-- CSS Styles -->
+  <link rel="stylesheet" href="/css/topnav.css" />
+  <link rel="stylesheet" href="/css/styles.css" />
+
+  <!-- jQuery library -->
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+  <script src="/js/jquery.min.js"></script>
+
+  <!-- jQuery Ui -->
+  <!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script> -->
+  <!-- <script src="/js/jquery-ui.min.js"></script> -->
+
+  <!-- AngularJS scripts-->
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script> -->
+  <script src="/js/angular.min.js"></script>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.min.js"></script> -->
+  <script src="/js/angular-route.min.js"></script>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.min.js"></script> -->
+  <script src="/js/angular-animate.min.js"></script>
+  <script src="/js/angularApp.js"></script>
+  <!-- <script src="/js/angularService.js"></script> -->
+  <!-- BootStrap scripts -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script> -->
+  <script src="/js/popper.min.js"></script>
+  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script> -->
+  <script src="/js/bootstrap.min.js"></script>
+
+</head>
+
+<body ng-app="myApp" ng-controller="homeCtlr" id="top">
+  <!-- header -->
+  <div ng-include="header"></div>
+  <!-- View injected Here -->
+  <section ng-view class="container"></section>
+  <!-- footer -->
+  <div ng-include="footer"></div>
+</body>
+
+</html>

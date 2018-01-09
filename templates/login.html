@@ -1,29 +1,74 @@
 <div ng-controller="loginCtlr">
 
-	<ul class="nav nav-tabs">
+	<ul class="nav" role="tablist" id="myTab">
 		<li class="nav-item">
-			<a class="nav-link active" data-toggle="tab" href="#login">Login</a>
+			<a class="nav-link tab-highliter" data-toggle="tab" role="tab" href="#login">Login</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link" data-toggle="tab" href="#register">Register</a>
+			<a class="nav-link tab-highliter" data-toggle="tab" role="tab" href="#register">Register</a>
 		</li>
 	</ul>
-	
+	<hr class="mt-auto mr-auto">
 	<!-- Tab panes -->
-	<div class="tab-content">
-		<div id="login" class="tab-pane active" ng-include="loginTab" ></div>
-		<div id="register" class="tab-pane fade" ng-include="registerTab" ></div>
+	<div class="tab-content mt-4">
+
+		<!-- Login Tab View -->
+		<div id="login" class="tab-pane active">
+			<!-- Password must have at least one digit (0-9), one lowercase character (a-z) or one uppercase character(A-Z). It can have minimum 8 characters and maximum 20 characters. -->
+			<form class="" id="loginForm" name="loginForm" novalidate>
+				<div class="form-group">
+					<input class="form-control" ng-model="email" name="email" placeholder="Email" type="email" required />
+				</div>
+				<div class="form-group">
+					<input class="form-control" ng-model="password" name="password" placeholder="Password" type="password" required pattern="[a-z A-Z 0-9]{3,20}" />
+				</div>
+				<button class="btn btn-primary btn-large" type="submit" id="loginBtn">Login</button>
+			</form>
+			<a href="/secure/Contributors">Contributors</a>
+		</div>
+
+		<!-- Register Tab View -->
+		<div id="register" class="tab-pane">
+			<form class="">
+				<div class="form-group">
+					<input class="form-control" name="email" placeholder="Name" />
+				</div>
+				<div class="form-group">
+					<input class="form-control" name="email" placeholder="Mobile" />
+				</div>
+				<div class="form-group">
+					<input class="form-control" name="email" placeholder="Email" />
+				</div>
+				<div class="form-group">
+					<input class="form-control" name="email" placeholder="Password" />
+				</div>
+				<div class="form-group">
+					<input class="form-control" name="email" placeholder="Confirm Password" />
+				</div>
+				<button class="btn btn-primary btn-large" id="registerBtn">Register</button>
+			</form>
+		</div>
+
+
 	</div>
-	
+
 </div>
 
 <script>
 	$(document).ready(function() {
-		
-		
-		$('#loginBtn').click(function() {
-	    	$(this).html('Processing...');
-	    	$(this).attr('disbled', 'disabled');
+		$('#myTab a').on('click', function(e) {
+			e.preventDefault();
+			// $(this).toggleClass('nav-active');
+			// $(!(this)).removeClass('nav-active');
+			// $(this).tab('show');
+
+		})
+
+
+		$('#loginBtn, #registerBtn').click(function() {
+			$(this).attr('disabled','disabled');
+			var _temp=$(this).text();
+			$(this).html(_temp+' <img src="/img/loading2_circlefill.svg" height="20" id="loading_icon" class="m-0"/>');
 			$.ajax({
 				url: "/auth-login",
 				method: "post",
@@ -31,11 +76,11 @@
 				success: function(data) {
 					/* alert(data); */
 				},
-				error: function(XMLHttpRequest, textStatus, errorThrown ) {
+				error: function(XMLHttpRequest, textStatus, errorThrown) {
 					/* alert('An ' + textStatus + ' occured ' + errorThrown); */
-				} 
+				}
 			});
 		});
-		
+
 	});
 </script>
