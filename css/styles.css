@@ -12,31 +12,89 @@
   src: url(sansation_bold.woff);
 }
 
+@media screen and (min-width: 580px) {
+  .container {
+    box-shadow: 2px 2px 5px 5px #eee;
+    margin-top: 40px;
+    margin-bottom: 50px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+}
 
-@media screen and (min-width: 580px){
-	.container {
-	box-shadow: 2px 2px 5px 5px #eee;
-	margin-top: 40px;
-	margin-bottom: 50px;
-	padding-top: 15px;
-	padding-bottom: 15px;
-	}
-}
 .container {
-	min-height: 43vh;
-	margin-top: 30px;
-	margin-bottom: 35px;
+  min-height: 43vh;
+  margin-top: 30px;
+  margin-bottom: 35px;
 }
+
 .nav-active {
-	border-bottom: 3px solid blue;
-	background: #ccc;
-	border-radius: 10px;
-	color: #100;
+  border-bottom: 3px solid blue;
+  background: #ccc;
+  border-radius: 10px;
+  color: #100;
 }
+
+#load {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 9999;
+  background: url("/img/loading2_circlefill.svg") no-repeat center center rgba(0, 0, 0, 0.5)
+}
+
 .tab-highliter:hover {
   border-bottom: 3px solid #2d5ca8;
 }
 
+.logoText {
+  font-weight: bolder;
+  color: blue;
+  font-family: sans-serif, Helvetica, Arial;
+  font-size: 8vmin;
+  text-shadow: -1px 0 white, 0 0.5vh #999, 1px 0 white, 0 -1px white;
+  -webkit-animation: colorchangelogoText 20s infinite alternate;
+}
+
+@-webkit-keyframes colorchangelogoText {
+  0% {
+    color: blue;
+  }
+  10% {
+    color: #8e44ad;
+  }
+  20% {
+    color: #1abc9c;
+  }
+  30% {
+    color: #d35400;
+  }
+  40% {
+    color: blue;
+  }
+  50% {
+    color: #34495e;
+  }
+  60% {
+    color: blue;
+  }
+  70% {
+    color: #2980b9;
+  }
+  80% {
+    color: #f1c40f;
+  }
+  90% {
+    color: #2980b9;
+  }
+  100% {
+    color: pink;
+  }
+}
+
+.logoText:hover {
+  text-decoration: none;
+}
 
 /* body, html {
     font-family: ff-din-web-pro, Helvetica, Arial, sans-serif;
@@ -45,7 +103,7 @@
 
 /* used for home background stage image */
 
-.amazingslider-nav-1{
+.amazingslider-nav-1 {
   background: #aaa;
 }
 
