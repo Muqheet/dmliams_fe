@@ -53,7 +53,7 @@
   font-family: sans-serif, Helvetica, Arial;
   font-size: 8vmin;
   text-shadow: -1px 0 white, 0 0.5vh #999, 1px 0 white, 0 -1px white;
-  -webkit-animation: colorchangelogoText 20s infinite alternate;
+  /* -webkit-animation: colorchangelogoText 20s infinite alternate; */
 }
 
 @-webkit-keyframes colorchangelogoText {

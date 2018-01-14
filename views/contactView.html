@@ -10,18 +10,22 @@
 
 		<div class="col-md-6">
 
-			<form action="">
+			<form action="mailto:ammohidduin@gmail.com" enctype="text/plain">
 
-				<div class="form-group">
+				<div class="input-group form-group">
+					<span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
 					<input class="form-control" name="name" placeholder="Enter Your Name" type="text" required pattern="[A-Za-z. ]{3,30}" title="Allowed only [A-Z a-z .] characters of length between 3 to 30" />
 				</div>
 
-				<div class="form-group">
+
+				<div class="input-group form-group">
+					<span class="input-group-addon"><i class="fa fa-envelope fa-fw"></i></span>
 					<input class="form-control" name="email" placeholder="Enter Your Email" type="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Email must be in the following order: characters@characters.domain">
 				</div>
 
-				<div class="form-group">
-					<textarea class="form-control" name="comments" placeholder="Type Your Comment Here" rows="6" required pattern="[A-Za-z.,!@#'&() ]{10,250}" title="Allowed only [A-Za-z.,!@#'&() ] characters of length between 10 to 250"></textarea>
+				<div class="input-group form-group">
+					<span class="input-group-addon"><i class="fa fa-comment fa-fw"></i></span>
+					<textarea type="text" class="form-control" name="comments" placeholder="Enter Your Message" rows="6" required pattern="[A-Za-z. ,]{10,250}" title="Allowed only [A-Z a-z . , ] characters of length between 10 to 250"></textarea>
 				</div>
 
 				<input class="btn btn-primary" type="submit" value="Submit" />
