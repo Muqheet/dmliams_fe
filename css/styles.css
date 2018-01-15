@@ -28,13 +28,6 @@
   margin-bottom: 35px;
 }
 
-.nav-active {
-  border-bottom: 3px solid blue;
-  background: #ccc;
-  border-radius: 10px;
-  color: #100;
-}
-
 #load {
   width: 100%;
   height: 100%;
@@ -43,8 +36,23 @@
   background: url("/img/loading2_circlefill.svg") no-repeat center center rgba(0, 0, 0, 0.5)
 }
 
+@media screen and (max-width: 580px) {
+  .tab-highliter {
+    background: #eee;
+    border-radius: 100px;
+  }
+}
+
+@media screen and (min-width: 580px) {
+  .tab-highliter {
+    border-bottom: 3px solid rgb(59, 97, 153);
+  }
+}
+
 .tab-highliter:hover {
   border-bottom: 3px solid #2d5ca8;
+}
+
 }
 
 .logoText {
@@ -52,8 +60,8 @@
   color: blue;
   font-family: sans-serif, Helvetica, Arial;
   font-size: 8vmin;
-  text-shadow: -1px 0 white, 0 0.5vh #999, 1px 0 white, 0 -1px white;
-  /* -webkit-animation: colorchangelogoText 20s infinite alternate; */
+  text-shadow: -1px 0 white, 0 0.3vh #999, 1px 0 white, 0 -1px white;
+  -webkit-animation: colorchangelogoText 20s infinite alternate;
 }
 
 @-webkit-keyframes colorchangelogoText {
@@ -191,12 +199,11 @@
 
 #collapsibleNavbar li a:hover {
   border-bottom: 3px solid rgb(59, 97, 153);
-  font-size: 18px;
 }
 
 #collapsibleNavbar li a:active {
   background: linear-gradient(#999, #ddd);
-  border-radius: 10px 10px 0px 0;
+  /* border-radius: 10px 10px 0px 0; */
 }
 
 .homeStageBgImg {
@@ -211,7 +218,6 @@
 
 .homeStageBgImg-caption {
   background: rgba(255, 255, 255, 0.6);
-  font-weight: 300;
   max-width: 60rem;
   margin: 0 auto;
   text-align: center;

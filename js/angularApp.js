@@ -58,6 +58,12 @@ myApp.controller("homeCtlr", function($scope, $location, $anchorScroll) {
 		$anchorScroll();
 	};
 
+	// To height navigation bar menu
+	$scope.getTabClass = function(path) {
+		console.log($location.url());
+		return ($location.url() === path) ? 'active tab-highliter' : '';
+	}
+
 	$scope.header = "/views/headerView.html";
 	$scope.footer = "/views/footerView.html";
 	$scope.home = "/views/homeView.html";

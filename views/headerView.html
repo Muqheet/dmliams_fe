@@ -1,11 +1,10 @@
-<div class="text-center d-md-none" style="background: linear-gradient(to right, orange,white,green); color: #111;">
-	<div class="d-flex align-items-center justify-content-center logoText mt-0 pt-0" style="background: linar-gradient(to right, orange,white,green); color: #111;">
-		<span class="m-0 p-0"><img src="/img/zakath_2.5p_1.svg" alt="logo" height="50"></span>
-		<span class="display-4 m-0 p-0"> &nbsp;AL</span>
-		<spnan class="h4 m-0 p-0 font-weight-bold">imdaad<br>Society</spnan>
-		<span class="h4">.</span>
-		<spnan class="h4 m-0 p-0 ">org</spnan>
-	</div>
+<!-- To display only in small and medium screens -->
+<div class="text-center d-md-none d-flex align-items-center justify-content-center logoText mt-0 pt-0" style="background: linear-gradient(to right, #aaa, #eee, #ccc); color: #111;">
+	<span class="m-0 p-0"><img src="/img/zakath_2.5p_1.svg" alt="logo" height="50"></span>
+	<span class="display-4 m-0 p-0"> &nbsp;AL</span>
+	<spnan class="h4 m-0 p-0 font-weight-bold">imdaad<br>society</spnan>
+	<span class="h4">.</span>
+	<spnan class="h4 m-0 p-0 ">org</spnan>
 </div>
 
 
@@ -14,10 +13,10 @@
 <nav class="navbar navbar-light text-info navbar-expand-sm font-weight-bold text-center bg-light" style="border-bottom: 3px solid #eee;">
 
 	<li class="d-none d-md-inline-block border rounded border-primary mr-4">
-		<div class="d-flex align-items-center justify-content-center logoText mt-0 pt-0" style="background: linar-gradient(to right, orange,white,green); color: #111;">
+		<div class="d-flex align-items-center justify-content-center logoText mt-0 pt-0" style="background: linear-gradient(to right, #aaa, #eee, #ccc); color: #111;">
 			<span class="m-0 p-0"><img src="/img/zakath_2.5p_1.svg" alt="logo" height="50"></span>
 			<span class="display-4 m-0 p-0"> &nbsp;AL</span>
-			<spnan class="h4 m-0 p-0 font-weight-bold">imdaad<br>Society</spnan>
+			<spnan class="h4 m-0 p-0 font-weight-bold">imdaad<br>society</spnan>
 			<span class="h4">.</span>
 			<spnan class="h4 m-0 p-0 ">org</spnan>
 		</div>
@@ -36,17 +35,17 @@
 		<ul class="navbar-nav mx-auto">
 			<!-- To right align the next ul contents "mr-auto" class is used-->
 
-			<li class="nav-item"><a class="nav-link" href="/"><i aria-hidden="true" class="fa fa-home"></i> Home</a></li>
+			<li class="nav-item"><a class="nav-link" ng-class="getTabClass('/')" href="/"><i aria-hidden="true" class="fa fa-home"></i> Home</a></li>
 
-			<li class="nav-item"><a class="nav-link" href="/About"><i aria-hidden="true" class="fa fa-info-circle"></i> About</a></li>
+			<li class="nav-item"><a class="nav-link" ng-class="getTabClass('/About')" href="/About"><i aria-hidden="true" class="fa fa-info-circle"></i> About</a></li>
 
-			<li class="nav-item"><a class="nav-link" href="/#contact" ng-click="scrollTo('contact')"><i aria-hidden="true" class="fa fa-phone-square"></i> Contact</a></li>
+			<li class="nav-item"><a class="nav-link" ng-class="getTabClass('/#contact')"href="/#contact" ng-click="scrollTo('contact')"><i aria-hidden="true" class="fa fa-phone-square"></i> Contact</a></li>
 
-			<li class="nav-item"><a class="nav-link" href="/Gallery"><i aria-hidden="true" class="fa fa-picture-o"></i> Gallery</a></li>
+			<li class="nav-item"><a class="nav-link" ng-class="getTabClass('/Gallery')"href="/Gallery"><i aria-hidden="true" class="fa fa-picture-o"></i> Gallery</a></li>
 
-			<li class="nav-item"><a class="nav-link" href="/Donate"><i aria-hidden="true" class="fa fa-money"></i> Donate</a></li>
+			<li class="nav-item"><a class="nav-link" ng-class="getTabClass('/Donate')"href="/Donate"><i aria-hidden="true" class="fa fa-money"></i> Donate</a></li>
 
-			<li class="nav-item"><a class="nav-link" href="/ZakathCalc"><i aria-hidden="true" class="fa fa-calculator"></i> Zakath Calculator</a></li>
+			<li class="nav-item"><a class="nav-link" ng-class="getTabClass('/ZakathCalc')"href="/ZakathCalc"><i aria-hidden="true" class="fa fa-calculator"></i> Zakath Calculator</a></li>
 
 			<li class="nav-item dropdown d-none">
 				<a class="nav-link dropdown-toggle" href="" id="navbardrop" data-toggle="dropdown">Donate</a>
@@ -60,7 +59,7 @@
 		</ul>
 
 		<!-- <ul class="navbar-nav d-none">
-			<li class="nav-item"><a class="btn btn-primary" style="border-radius: 0px 2px 0px 2px; " href="/Login">Sign In</a></li>
+			<li class="nav-item"><a class="btn btn-primary" style="border-radius: 0px 2px 0px 2px; " href="/Login#login">Sign In</a></li>
 		</ul> -->
 
 	</div>

@@ -1,11 +1,11 @@
 <div ng-controller="loginCtlr">
 
 	<ul class="nav" role="tablist" id="myTab">
-		<li class="nav-item">
-			<a class="nav-link tab-highliter" data-toggle="tab" role="tab" href="#login">Login</a>
+		<li class="nav-item" >
+			<a class="nav-link" data-toggle="tab" role="tab" href="#login" ng-class="getTabClass('/Login#login')">Login</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link tab-highliter" data-toggle="tab" role="tab" href="#register">Register</a>
+			<a class="nav-link" data-toggle="tab" role="tab" href="#register" ng-class="getTabClass('/Login#register')">Register</a>
 		</li>
 	</ul>
 	<hr class="mt-auto mr-auto">
@@ -56,15 +56,9 @@
 
 <script>
 	$(document).ready(function() {
-		$('#myTab a').on('click', function(e) {
-			e.preventDefault();
-			// $(this).toggleClass('nav-active');
-			// $(!(this)).removeClass('nav-active');
-			// $(this).tab('show');
-
-		})
-
-
+	// $('#myTab').click(function(e) {
+	// 	e.preventDefault();
+	// })
 		$('#loginBtn, #registerBtn').click(function() {
 			$(this).attr('disabled','disabled');
 			var _temp=$(this).text();
