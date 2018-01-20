@@ -8,11 +8,11 @@
 
 	<!-- <div style="padding: 10px;">Show/Hide Columns:<a class="toggle-vis" data-column="0" href="">#Id</a> |<a class="toggle-vis" data-column="1" href="">Name</a> |<a class="toggle-vis" data-column="2" href="">Mobile</a> |<a class="toggle-vis" data-column="3" href="">Email</a> |<a class="toggle-vis" data-column="4" href="">Gender</a> |<a class="toggle-vis" data-column="5" href="">Country</a> |<a class="toggle-vis" data-column="6" href="">State</a> |<a class="toggle-vis" data-column="7" href="">City/Town</a> |<a class="toggle-vis" data-column="8" href="">Street Address</a> |<a class="toggle-vis" data-column="9" href="">Door No.</a> |<a class="toggle-vis" data-column="10" href="">Zip Code</a></div>-->
 
-	<div ng-include="ContributorModal"></div>
-	<div ng-include="DeleteModal"></div>
+	<!-- <div ng-include="ContributorModal"></div> -->
+	<!-- <div ng-include="DeleteModal"></div> -->
 
-
-	<table id="contributorTbl" class="table table-hover table-striped table-bordered text-center" style="width: 100%">
+	<div id="modals"></div>
+	<table id="contributorTbl" class="table table-hover table-striped table-bordered text-center d-none" style="width: 100%">
 		<thead>
 			<tr>
 				<th>#Id</th>
@@ -80,6 +80,8 @@
 					$(row).attr('id', data.contributorid);
 			},
 			recordId: 'contributorid',
+			oprModalPath: '/secureViews/ContributorModal.html',
+			deleteModalPath: '/secureViews/DeleteModal.html',
 
 			//ajax related
 			getAjax : [domainName+'/api/Contributors/', 'get'],

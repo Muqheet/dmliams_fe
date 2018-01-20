@@ -1,47 +1,75 @@
+
 /* --------------------------------DataTable Creation-------------------------------- */
-var domainName = 'http://localhost:8090'; //url of backend domain for rest api
 var rowClickedClass = 'table-primary';
+var addBtn = '#addBtn';
+var editBtn = '#editBtn';
+var deleteBtn = '#deleteBtn';
+var addSubmitBtn = '#addSubmitBtn';
+var editSubmitBtn = '#editSubmitBtn';
+var deleteSubmitBtn = '#deleteSubmitBtn';
+var deleteModal = '#deleteModal';
+var oprModal = '#oprModal';
+var oprModalHeader = '#oprModalHeader';
+
+var headers = {"Authorization": getJwtHeader()}
 
 function selectedRowId() {
   return $('tr.' + rowClickedClass).attr('id');
 }
 
 function createTable(tableData) {
+  var tid = '#' + tableData.tableId;
+  var fid = '#' + tableData.formId;
+
   (function jsonData() {
     var url = tableData.getAjax[0];
     $.ajax({
       url: url,
-      crossDomain: true,
+      headers : headers,
       success: function(data, textStatus, req) {
         console.log(data)
         populateTable(data);
+      },
+      error: function() {
+        $(tid).removeClass('d-none');
+        $(tid).html('<div class="text-danger">Error occured, unable to load data.</div>');
+        // alert('Error occured, unable to load data.');
       }
     });
   })();
-  //insert buttons before table
-  (function insertCrudBtns() {
-
-    $('#' + tableData.tableId).before(
-      '<div class="bs-callout bs-callout-info alert alert-dismissable fade show">' +
-      '<button type="button" class="close bg-light" data-dismiss="alert">&times;</button>'+
-      '<p><span class="badge badge-secondary">1</span> Click on the <span class="text-primary">Add New</span> button to add a new record</p>' +
-      '<p><span class="badge badge-secondary">2</span> Click on the table row to select / deselect a record</p>' +
-      '<p><span class="badge badge-secondary">3</span> Only one record can be selected at a time to <span class="text-info">Edit</span> or <span class="text-danger">Delete</span></p>' +
-      '<p><span class="badge badge-secondary">4</span> Click on the table headers to sort in Ascending / Descending order</p>' +
-      '</div>'
-    );
-    $('#' + tableData.tableId).before(
-      '<div id="crudBtns" class="sticky-top mb-4 text-center bg-light">' +
-      '<button id="addBtn" class="btn btn-primary mr-1 " >Add New <i aria-hidden="true" class="fa fa-plus-circle"></i></button>' +
-      '<button id="editBtn" class="btn btn-info mr-1 " disabled="disabled">Edit <i aria-hidden="true" class="fa fa-edit"></i></button>' +
-      '<button id="deleteBtn" class="btn btn-danger mr-1 " disabled="disabled">Delete <i aria-hidden="true" class="fa fa-remove"></i></button>' +
-      '</div>'
-    );
-  })();
 
   function populateTable(data) {
+
+    //insert buttons before table
+    (function insertCrudBtns() {
+
+      $(tid).before(
+        '<div class="bs-callout bs-callout-info alert alert-dismissable fade show">' +
+        '<button type="button" class="close bg-light" data-dismiss="alert">&times;</button>'+
+        '<p><span class="badge badge-secondary">1</span> Click on the <span class="text-primary">Add New</span> button to add a new record</p>' +
+        '<p><span class="badge badge-secondary">2</span> Click on the table row to select / deselect a record</p>' +
+        '<p><span class="badge badge-secondary">3</span> Only one record can be selected at a time to <span class="text-info">Edit</span> or <span class="text-danger">Delete</span></p>' +
+        '<p><span class="badge badge-secondary">4</span> Click on the table headers to sort in Ascending / Descending order</p>' +
+        '</div>'
+      );
+      $(tid).before(
+        '<div id="crudBtns" class="sticky-top mb-4 text-center bg-light">' +
+        '<button id="addBtn" class="btn btn-primary mr-1 " >Add New <i aria-hidden="true" class="fa fa-plus-circle"></i></button>' +
+        '<button id="editBtn" class="btn btn-info mr-1 " disabled="disabled">Edit <i aria-hidden="true" class="fa fa-edit"></i></button>' +
+        '<button id="deleteBtn" class="btn btn-danger mr-1 " disabled="disabled">Delete <i aria-hidden="true" class="fa fa-remove"></i></button>' +
+        '</div>'
+      );
+      //load modals
+      $(tid).before('<div id="modal1"></div><div id="modal2"></div>');
+      $('#modal1').load(tableData.oprModalPath);
+      $('#modal2').load(tableData.deleteModalPath);
+
+    })();
+
+
+
     //console.log(tableData)
-    dataTableObj = $('#' + tableData.tableId).DataTable({
+    dataTableObj = $(tid).DataTable({
       destroy: true,
       data: data,
       columns: tableData.columns,
@@ -63,25 +91,21 @@ function createTable(tableData) {
   //Start of Events
   $('table tbody').off('click').on('click', 'tr', rowSelection);
 
-  $('#addBtn').click(rowAdditionPopup);
+  $(addBtn).click(rowAdditionPopup);
 
-  $('#editBtn').click(rowEditionPopup);
+  $(editBtn).click(rowEditionPopup);
 
-  $('#deleteBtn').click(rowDeletionPopup);
+  $(deleteBtn).on('click', rowDeletionPopup);
 
-  $('#deleteSubmitBtn').off('click').on('click', deleteRecord);
+  $(deleteSubmitBtn).off('click').on('click', deleteRecord);
 
   //On form submit do Ajax & close modal on success.
-  $('#addSubmitBtn').off('click').on('click', addRecord);
+  $(addSubmitBtn).off('click').on('click', addRecord);
 
-  $('#editSubmitBtn').off('click').on('click', editRecord);
+  $(editSubmitBtn).off('click').on('click', editRecord);
 
 
   //$('#'+tableData.formId).on('keyup keypress', preventFormSubmit);
-
-  // addOrEditRecord('add', tableData.addAjax[1], tableData.addAjax[0], tableData.formId);
-  //addOrEditRecord('edit', tableData.editAjax[1], tableData.editAjax[0], tableData.formId);
-
 
   //End of Events
 
@@ -90,36 +114,37 @@ function createTable(tableData) {
     if (!($('td').hasClass('dataTables_empty'))) {
       if ($(this).hasClass(rowClickedClass)) {
         $(this).removeClass(rowClickedClass);
-        $('#editBtn, #deleteBtn').attr('disabled', 'disabled');
-        $('#addBtn').removeAttr('disabled');
+        $(editBtn +','+ deleteBtn).attr('disabled', 'disabled');
+        $(addBtn).removeAttr('disabled');
       } else {
         $('tr.' + rowClickedClass).removeClass(rowClickedClass);
         $(this).addClass(rowClickedClass);
-        $('#editBtn, #deleteBtn').removeAttr('disabled');
-        $('#addBtn').attr('disabled', 'disabled');
+        $(editBtn +','+ deleteBtn).removeAttr('disabled');
+        $(addBtn).attr('disabled', 'disabled');
       }
     }
   }
 
   function rowAdditionPopup() {
-    $('#oprModalHeader').html('Add Record');
-    $('#editSubmitBtn').hide(); //Hide edit btn
-    $('#addSubmitBtn').show(); //Show add btn
-    $('#' + tableData.formId + ' :input').val(''); //clear input values if any
-    $('#oprModal').modal('show'); //Open modal to show form
+
+    $(oprModalHeader).html('Add Record');
+    $(editSubmitBtn).hide(); //Hide edit btn
+    $(addSubmitBtn).show(); //Show add btn
+    $(fid + ' :input').val(''); //clear input values if any
+    $(oprModal).modal('show'); //Open modal to show form
   }
 
   function rowEditionPopup() {
     //Open modal, change modal header, hide one of submitBtn.
-    $('#oprModalHeader').html('Edit Record');
-    $('#addSubmitBtn').hide();
-    $('#editSubmitBtn').show();
+    $(oprModalHeader).html('Edit Record');
+    $(addSubmitBtn).hide();
+    $(editSubmitBtn).show();
     fillFormFieldsToEdit();
-    $('#oprModal').modal('show');
+    $(oprModal).modal('show');
   }
 
   function rowDeletionPopup() {
-    $('#deleteModal').modal('show');
+    $(deleteModal).modal('show');
   }
 
   function addRecord() {
@@ -128,12 +153,13 @@ function createTable(tableData) {
       currentBtnId = $(this).attr('id');
       addLoadingIcon(currentBtnId);
 
-      var formData = $('#' + tableData.formId).serializeFormJSON();
+      var formData = $(fid).serializeFormJSON();
       console.log('form data: ' + formData);
 
       $.ajax({
         url: tableData.addAjax[0],
         method: tableData.addAjax[1],
+        headers : headers,
         contentType: "application/json; charset=utf-8",
         data: formData,
         success: function(data) {
@@ -142,7 +168,7 @@ function createTable(tableData) {
           var rId = tableData.recordId; //Get Record Id from tableData
           fData[rId] = data; //Set Record Id from response of rest api
           console.log(fData);
-          $('#oprModal').modal('hide');
+          $(oprModal).modal('hide');
           dataTableObj.row.add(fData).draw();
         },
         error: function() {
@@ -158,16 +184,17 @@ function createTable(tableData) {
   function editRecord() {
     if (form.valid()) {
 
-      var formData = $('#' + tableData.formId).serializeFormJSON();
+      var formData = $(fid).serializeFormJSON();
       console.log('form data: ' + formData);
       $.ajax({
         url: tableData.editAjax[0],
         method: tableData.editAjax[1],
+        headers : headers,
         contentType: "application/json; charset=utf-8",
         data: formData,
         success: function() {
           console.log('edit success');
-          $('#oprModal').modal('hide');
+          $(oprModal).modal('hide');
           dataTableObj.row('tr.' + rowClickedClass).data(JSON.parse(formData)).draw();
           $('tr.' + rowClickedClass)
             .css('color', 'green')
@@ -186,13 +213,14 @@ function createTable(tableData) {
     $.ajax({
       url: tableData.deleteAjax[0] + selectedRowId(),
       method: tableData.deleteAjax[1],
+      headers : headers,
       success: function() {
         //using dataTable API methods to delete row from table
-        $('#deleteModal').modal('hide');
+        $(deleteModal).modal('hide');
         $('tr.' + rowClickedClass)
           .css('color', 'red') //animate the row to idetify the user
           .animate({
-            color: 'black'
+            color: '#000'
           }, 'slow', function() {
             dataTableObj.row('.' + rowClickedClass).remove().draw();
             disableBtns();
@@ -200,7 +228,7 @@ function createTable(tableData) {
       },
       error: function(XMLHttpRequest, textStatus, errorThrown) {
         console.log(textStatus + ' ' + errorThrown + ' ' + XMLHttpRequest);
-        $('#deleteModal').modal('hide');
+        $(deleteModal).modal('hide');
         alert(textStatus + ' occured ' + errorThrown);
       },
       complete: function() {
@@ -210,12 +238,12 @@ function createTable(tableData) {
   }
 
   //function is executed automatically, no need to call as enclosed with (fn)().
-  var form = $('#' + tableData.formId);
+  var form = $(fid);
   form.validate({
     // 	submitHandler: function() {
     //
     // },
-    ignore: '*',
+    // ignore: '*',
     errorClass: "invalid-feedback row col-md-12 pt-0",
     validClass: "valid-feedback row col-md-12 pt-0",
     highlight: function(element, errorClass, validClass) {
@@ -233,7 +261,7 @@ function createTable(tableData) {
   // Used By Edit
   function fillFormFieldsToEdit() {
     var rowData = dataTableObj.row('tr.' + rowClickedClass).data();
-    $('#' + tableData.formId + ' :input').each(function() {
+    $(fid + ' :input').each(function() {
       var ip = this;
       $(Object.entries(rowData)).each(function() {
         var ip1 = this;
@@ -248,8 +276,8 @@ function createTable(tableData) {
   }
 
   function disableBtns() {
-    $('#editBtn, #deleteBtn').attr('disabled', 'disabled');
-    $('#addBtn').removeAttr('disabled');
+    $(editBtn +','+ deleteBtn).attr('disabled', 'disabled');
+    $(addBtn).removeAttr('disabled');
     $('tr.' + rowClickedClass).removeClass(rowClickedClass);
   }
 
@@ -265,12 +293,12 @@ function createTable(tableData) {
   function addLoadingIcon(id) {
     $('#'+id).attr('disabled','disabled');
     var _temp=$('#'+id).text();
-    $('#'+id).html(_temp+' <img src="/img/loading2_circlefill.svg" height="20" id="loading_icon" class="m-0"/>');
+    $('#'+id).html(_temp+' <img src="/img/loading2_circlefill.svg" height="20" id="l_ico" class="m-0"/>');
   }
 
   function removeLoadingIcon(id) {
     $('#'+id).removeAttr('disabled');
-    $('#loading_icon').remove();
+    $('#l_ico').remove();
   }
   //End of createTable
 }

@@ -16,8 +16,8 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 
   <!-- CSS Styles -->
-  <link rel="stylesheet" href="/css/topnav.css" />
   <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="stylesheet" href="/css/formStyles.css" />
 
   <!-- jQuery library -->
   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
@@ -32,15 +32,21 @@
   <script src="/js/angular.min.js"></script>
   <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.min.js"></script> -->
   <script src="/js/angular-route.min.js"></script>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-resource.min.js"></script> -->
+  <script src="/js/angular-resource.min.js"></script>
   <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.min.js"></script> -->
   <script src="/js/angular-animate.min.js"></script>
   <script src="/js/angularApp.js"></script>
   <!-- <script src="/js/angularService.js"></script> -->
+
+
   <!-- BootStrap scripts -->
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script> -->
   <script src="/js/popper.min.js"></script>
   <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script> -->
   <script src="/js/bootstrap.min.js"></script>
+
+
   <script type="text/javascript">
     document.onreadystatechange = function() {
       var state = document.readyState
@@ -57,13 +63,13 @@
   </script>
 </head>
 
-<body ng-app="myApp" ng-controller="homeCtlr" id="top">
+<body ng-app="myApp" ng-controller="homeCtlr">
   <!-- To show loading icon -->
   <div id="load"></div>
   <!-- header -->
   <div ng-include="header"></div>
   <!-- View injected Here -->
-  <section ng-view class="container"></section>
+  <section ng-view class="container"><img src="/img/loading2_circlefill.svg" class="text-center d-flex align-items-center" alt=""></section>
   <!-- footer -->
   <div ng-include="footer"></div>
 </body>

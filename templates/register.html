@@ -1,0 +1,56 @@
+<div ng-controller="registerCtlr">
+
+  <ul class="nav nav-tabs ml-auto mr-auto col-md-6">
+    <li class="nav-item">
+      <a class="nav-link" href="/Login" ng-class="getTabClass('/Login')">Login</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/Register" ng-class="getTabClass('/Register')">Register</a>
+    </li>
+  </ul>
+  <!-- <hr class="mt-auto mr-auto"> -->
+
+  <!-- Register Tab View -->
+  <div class="card card-body bg-light ml-auto mr-auto col-md-6">
+    <form>
+      <div class="form-group input-group">
+        <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
+        <input class="form-control" placeholder="Name" />
+      </div>
+      <div class="form-group input-group">
+        <span class="input-group-addon"><i class="fa fa-phone-square fa-fw"></i></span>
+        <select name="callingCodes" id="callingCodes" class="col-2 form-control p-0" style="font-size: 12px; margin: 0;">
+          <option value="91" selected>+91 (IN)</option>
+          <option value="1">+1 (US)</option>
+        </select>
+        <input class="form-control" placeholder="Mobile" />
+
+      </div>
+      <small class="form-text text-muted">You'll use this Email when you log in and if you ever need to reset your password.</small>
+      <div class="form-group input-group">
+        <span class="input-group-addon"><i class="fa fa-envelope fa-fw"></i></span>
+        <input class="form-control" placeholder="Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Email must be in the following order: characters@characters.domain"/>
+      </div>
+
+      <small class="form-text text-muted">Enter the Registration Code obtained from authorized person (specific to your Email).</small>
+      <div class="form-group input-group">
+        <span class="input-group-addon"><i class="fa fa-barcode fa-fw"></i></span>
+        <input class="form-control" placeholder="Registration Code" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Email must be in the following order: characters@characters.domain"/>
+      </div>
+
+      <div class="form-group input-group">
+        <span class="input-group-addon"><i class="fa fa-user-secret fa-fw"></i></span>
+        <input class="form-control" placeholder="Password" />
+      </div>
+      <button class="btn btn-primary w-100" id="registerBtn">Register</button>
+    </form>
+  </div>
+
+</div>
+
+<script src="/js/countryStateCity.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    populateCallingCodeList('callingCodes');
+  })
+</script>

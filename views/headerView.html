@@ -1,9 +1,9 @@
 <!-- To display only in small and medium screens -->
-<div class="text-center d-md-none d-flex align-items-center justify-content-center logoText mt-0 pt-0" style="background: linear-gradient(to right, #aaa, #eee, #ccc); color: #111;">
+<div class="text-center d-md-none d-flex align-items-center justify-content-center logoText mt-0 pt-0 font-raleway_thin" style="background: linear-gradient(to right, #aaa, #eee, #ccc); color: #111;">
 	<span class="m-0 p-0"><img src="/img/zakath_2.5p_1.svg" alt="logo" height="50"></span>
-	<span class="display-4 m-0 p-0"> &nbsp;AL</span>
+	<span class="display-4 m-0 p-0">&nbsp;AL</span>
 	<spnan class="h4 m-0 p-0 font-weight-bold">imdaad<br>society</spnan>
-	<span class="h4">.</span>
+	<span class="h4 font-weight-bold">.</span>
 	<spnan class="h4 m-0 p-0 ">org</spnan>
 </div>
 
@@ -11,14 +11,14 @@
 
 
 <nav class="navbar navbar-light text-info navbar-expand-sm font-weight-bold text-center bg-light" style="border-bottom: 3px solid #eee;">
-
-	<li class="d-none d-md-inline-block border rounded border-primary mr-4">
+	<!-- To display in medium and above screens -->
+	<li class="d-none d-md-block border rounded border-primary mr-4 font-raleway_thin">
 		<div class="d-flex align-items-center justify-content-center logoText mt-0 pt-0" style="background: linear-gradient(to right, #aaa, #eee, #ccc); color: #111;">
 			<span class="m-0 p-0"><img src="/img/zakath_2.5p_1.svg" alt="logo" height="50"></span>
-			<span class="display-4 m-0 p-0"> &nbsp;AL</span>
+			<span class="display-4 m-0 p-0">&nbsp;AL</span>
 			<spnan class="h4 m-0 p-0 font-weight-bold">imdaad<br>society</spnan>
-			<span class="h4">.</span>
-			<spnan class="h4 m-0 p-0 ">org</spnan>
+			<span class="h4 font-weight-bold">.</span>
+			<spnan class="h4 m-0 p-0 ">org&nbsp;</spnan>
 		</div>
 	</li>
 
@@ -32,21 +32,23 @@
 	<!-- Contents inside collapsible button -->
 	<div class="collapse navbar-collapse" id="collapsibleNavbar">
 
-		<ul class="navbar-nav mx-auto">
+		<ul class="navbar-nav mx-auto d-flex align-items-center">
 			<!-- To right align the next ul contents "mr-auto" class is used-->
 
 			<li class="nav-item"><a class="nav-link" ng-class="getTabClass('/')" href="/"><i aria-hidden="true" class="fa fa-home"></i> Home</a></li>
 
 			<li class="nav-item"><a class="nav-link" ng-class="getTabClass('/About')" href="/About"><i aria-hidden="true" class="fa fa-info-circle"></i> About</a></li>
 
-			<li class="nav-item"><a class="nav-link" ng-class="getTabClass('/#contact')"href="/#contact" ng-click="scrollTo('contact')"><i aria-hidden="true" class="fa fa-phone-square"></i> Contact</a></li>
+			<li class="nav-item"><a class="nav-link" ng-class="getTabClass('/#contact')" href="/#contact" ng-click="scrollTo('contact')"><i aria-hidden="true" class="fa fa-phone-square"></i> Contact</a></li>
 
-			<li class="nav-item"><a class="nav-link" ng-class="getTabClass('/Gallery')"href="/Gallery"><i aria-hidden="true" class="fa fa-picture-o"></i> Gallery</a></li>
+			<li class="nav-item"><a class="nav-link" ng-class="getTabClass('/Gallery')" href="/Gallery"><i aria-hidden="true" class="fa fa-picture-o"></i> Gallery</a></li>
 
-			<li class="nav-item"><a class="nav-link" ng-class="getTabClass('/Donate')"href="/Donate"><i aria-hidden="true" class="fa fa-money"></i> Donate</a></li>
+			<li class="nav-item"><a class="nav-link" ng-class="getTabClass('/Donate')" href="/Donate"><i aria-hidden="true" class="fa fa-money"></i> Donate</a></li>
 
-			<li class="nav-item"><a class="nav-link" ng-class="getTabClass('/ZakathCalc')"href="/ZakathCalc"><i aria-hidden="true" class="fa fa-calculator"></i> Zakath Calculator</a></li>
+			<li class="nav-item"><a class="nav-link" ng-class="getTabClass('/ZakathCalc')" href="/ZakathCalc"><i aria-hidden="true" class="fa fa-calculator"></i> Zakath Calc</a></li>
 
+			<li class="nav-item" ng-if="!isloggedIn"><a class="nav-link d-none" href="/Login"><i aria-hidden="true" class="fa fa-sign-in	"></i> Login</a></li>
+			<li class="nav-item" ng-if="isloggedIn"><a class="nav-link" href="/Logout"><i aria-hidden="true" class="fa fa-sign-out	"></i> Logout</a></li>
 			<li class="nav-item dropdown d-none">
 				<a class="nav-link dropdown-toggle" href="" id="navbardrop" data-toggle="dropdown">Donate</a>
 
@@ -64,3 +66,14 @@
 
 	</div>
 </nav>
+
+
+
+<div ng-if="isloggedIn">
+	<ul class="nav nav-tabs">
+		<li class="active"><a href="#">Home</a></li>
+		<li><a href="#">Menu 1</a></li>
+		<li><a href="#">Menu 2</a></li>
+		<li><a href="#">Menu 3</a></li>
+	</ul>
+</div>
