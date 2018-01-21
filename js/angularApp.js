@@ -10,10 +10,20 @@ function getJwtHeader() {
 function setJwtHeader(JwtHeader) {
   this.JwtHeader = JwtHeader;
 }
+function addLoadingIcon(id) {
+  $('#'+id).attr('disabled','disabled');
+  var _temp=$('#'+id).text();
+  $('#'+id).html(_temp+' <img src="/img/loading2_circlefill.svg" height="20" id="l_ico" class="m-0"/>');
+}
+
+function removeLoadingIcon(id) {
+  $('#'+id).removeAttr('disabled');
+  $('#l_ico').remove();
+}
 
 var onlyLoggedIn = function($location, $q, $rootScope) {
   var deferred = $q.defer();
-  $rootScope.isloggedIn = false;//set it false
+  $rootScope.isloggedIn = true;//set it false
   if ($rootScope.isloggedIn) {
     deferred.resolve();
   } else {
@@ -93,7 +103,6 @@ myApp.config(function($routeProvider, $locationProvider) {
   $locationProvider.html5Mode(true);
 });
 
-
 //*****************************Home************************************
 myApp.controller("homeCtlr", function($scope, $location, $anchorScroll) {
 
@@ -130,7 +139,6 @@ myApp.controller("logoutCtlr", function($rootScope) {
   $rootScope.loginResultClass='alert alert-success';
   $rootScope.loginResultMessage='You have been successfully logged out. Please close this window /  page for security reasons.';
 
-  // $http.get("/logout");
 });
 myApp.controller("registerCtlr", function($http) {
 
@@ -140,11 +148,6 @@ myApp.controller("registerCtlr", function($http) {
 myApp.controller("loginCtlr", function($scope, $http, $location, $log, $rootScope) {
   var successCallBack = function(response) {
     $rootScope.isloggedIn = true;
-
-    // $scope.status = response.status;
-    // $scope.headers = response.headers;
-    // $scope.xhrStatus = response.xhrStatus;
-    // $scope.statusText = response.statusText;
     console.log(response.status);
     JwtHeader = response.headers('Authorization');
     setJwtHeader(JwtHeader);
@@ -186,21 +189,7 @@ myApp.controller("contributorCtlr", function($scope, $http, $log) {
 
 //**********************Contributor Details******************************
 myApp.controller("contributorPaymentsCtlr", function($scope, $http, $log, $routeParams) {
-
   $scope.ContributorPaymentsModal = "/secureViews/ContributorPaymentsModal.html";
-  //var contributorId = $routeParams.id;
-
-  // var successCallBack = function(response) {
-  // 	$scope.contributor = response.data;
-  // };
-  //
-  // var errorCallBack = function(reason) {
-  // 	$scope.error = reason.data;
-  // };
-  //
-  // $http.get("/api/Contributor/" + $routeParams.id)
-  // .then(successCallBack, errorCallBack);
-
 });
 myApp.controller("zakathCtlr", function($scope) {
   $scope.resetVal = function() {
@@ -230,101 +219,3 @@ myApp.controller("zakathCtlr", function($scope) {
     $scope.payable = 0.025 * $scope.zakatable;
   }
 });
-
-
-
-
-// var roles = {
-//   superUser: 0,
-//   admin: 1,
-//   user: 2
-// };
-// var routeForUnauthorizedAccess = '/Login';
-//
-// myApp.factory('authorizationService', function($resource, $q, $rootScope, $location) {
-//   return {
-//     // We would cache the permission for the session,
-//     //to avoid roundtrip to server
-//     //for subsequent requests
-//
-//     permissionModel: {
-//       permission: {},
-//       isPermissionLoaded: false
-//     },
-//
-//     permissionCheck: function(roleCollection) {
-//
-//       // we will return a promise .
-//       var deferred = $q.defer();
-//
-//       //this is just to keep a pointer to parent scope from within promise scope.
-//       var parentPointer = this;
-//
-//       //Checking if permission object(list of roles for logged in user)
-//       //is already filled from service
-//       if (this.permissionModel.isPermissionLoaded) {
-//         //Check if the current user has required role to access the route
-//         this.getPermission(this.permissionModel, roleCollection, deferred);
-//       } else {
-//         //if permission is not obtained yet, we will get it from  server.
-//         // 'api/permissionService' is the path of server web service , used for this example.
-//
-//         $resource('/api/permissionService').get().$promise.then(function(response) {
-//           //when server service responds then we will fill the permission object
-//           parentPointer.permissionModel.permission = response;
-//
-//           //Indicator is set to true that permission object is filled and
-//           //can be re-used for subsequent route request for the session of the user
-//           parentPointer.permissionModel.isPermissionLoaded = true;
-//
-//           //Check if the current user has required role to access the route
-//           parentPointer.getPermission(parentPointer.permissionModel, roleCollection, deferred);
-//         });
-//       }
-//       return deferred.promise;
-//     },
-//
-//     //Method to check if the current user has required role to access the route
-//     //'permissionModel' has permission information obtained from server for current user
-//     //'roleCollection' is the list of roles which are authorized to access route
-//     //'deferred' is the object through which we shall resolve promise
-//     getPermission: function(permissionModel, roleCollection, deferred) {
-//       var ifPermissionPassed = false;
-//
-//       angular.forEach(roleCollection, function(role) {
-//         switch (role) {
-//           case roles.superUser:
-//             if (permissionModel.permission.isSuperUser) {
-//               ifPermissionPassed = true;
-//             }
-//             break;
-//           case roles.admin:
-//             if (permissionModel.permission.isAdministrator) {
-//               ifPermissionPassed = true;
-//             }
-//             break;
-//           case roles.user:
-//             if (permissionModel.permission.isUser) {
-//               ifPermissionPassed = true;
-//             }
-//             break;
-//           default:
-//             ifPermissionPassed = false;
-//         }
-//       });
-//       if (!ifPermissionPassed) {
-//         //If user does not have required access,
-//         //we will route the user to unauthorized access page
-//         $location.path(routeForUnauthorizedAccess);
-//         //As there could be some delay when location change event happens,
-//         //we will keep a watch on $locationChangeSuccess event
-//         // and would resolve promise when this event occurs.
-//         $rootScope.$on('$locationChangeSuccess', function(next, current) {
-//           deferred.resolve();
-//         });
-//       } else {
-//         deferred.resolve();
-//       }
-//     }
-//   };
-// });

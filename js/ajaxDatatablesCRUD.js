@@ -290,16 +290,6 @@ function createTable(tableData) {
     }
   }
 
-  function addLoadingIcon(id) {
-    $('#'+id).attr('disabled','disabled');
-    var _temp=$('#'+id).text();
-    $('#'+id).html(_temp+' <img src="/img/loading2_circlefill.svg" height="20" id="l_ico" class="m-0"/>');
-  }
-
-  function removeLoadingIcon(id) {
-    $('#'+id).removeAttr('disabled');
-    $('#l_ico').remove();
-  }
   //End of createTable
 }
 

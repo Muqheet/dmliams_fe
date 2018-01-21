@@ -1,3 +1,28 @@
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#mailSubmitBtn').click(function() {
+			$id = $(this);
+			$id.attr('disabled', 'disabled');
+			$.ajax({
+				url: "/send-mail",
+				method: "post",
+				data: $('#emailForm').serialize(),
+				success: function(data) {
+					alert('Your message has been sent.');
+				},
+				error: function(XMLHttpRequest, textStatus, errorThrown) {
+					alert('An error occured while sending, meanwhile you can send an email to ammohiuddin@gmail.com');
+				},
+				complete: function() {
+					$id.removeAttr('disabled');
+				}
+			});
+		});
+
+	})
+</script>
+
+
 <!-- background: linear-gradient(to top left, #3399ff 0%, #ccccff 100%); -->
 <!-- background: linear-gradient(to top left, #6666ff 0%, #3399ff 100%); -->
 <!-- background: linear-gradient(to bottom right, #003366 0%, #006699 100%); -->
@@ -10,7 +35,7 @@
 
 		<div class="col-md-6">
 
-			<form action="mailto:ammohiuddin@gmail.com" enctype="text/plain">
+			<form id="emailForm">
 
 				<div class="input-group form-group">
 					<span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
@@ -28,7 +53,7 @@
 					<textarea type="text" class="form-control" name="comments" placeholder="Enter Your Message" rows="6" required pattern="[A-Za-z. ,]{10,250}" title="Allowed only [A-Z a-z . , ] characters of length between 10 to 250"></textarea>
 				</div>
 
-				<input class="btn btn-primary btn-large" type="submit" value="Submit" />
+				<input class="btn btn-primary btn-large" type="submit" value="Submit" id="mailSubmitBtn"/>
 
 			</form>
 
