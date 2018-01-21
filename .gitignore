@@ -1,3 +1,5 @@
+#Files to ignore in Repo
 .atom-live-server.json
 c.html
 citystatetemp.html
+/views/headerBS3.html
