@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="myApp" ng-controller="homeCtlr">
 
-<head>
+<head ng-controller="homeCtlr">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="keywords" content="alimdaad, alimdaad society, alimdaad zakath society, alimdaad society narayanpet, alimdaad charity, alimdaad organization, donate, donate india, alimdaad telangana" />
   <meta name="description" content="">
-  <title>AlimdaadSociety | Serving The Needy Round The Clock</title>
+  <title>{{title}}</title>
   <base href="/" />
   <!-- BootStrap CSS -->
   <link rel="stylesheet" href="/css/bootstrap.min.css" />
@@ -63,7 +63,7 @@
   </script>
 </head>
 
-<body ng-app="myApp" ng-controller="homeCtlr">
+<body >
   <!-- To show loading icon -->
   <div id="load"></div>
   <!-- header -->

@@ -1,5 +1,5 @@
 <!-- To display only in small and medium screens -->
-<div class="text-center d-md-none d-flex align-items-center justify-content-center logoText mt-0 pt-0 font-raleway_thin" style="background: linear-gradient(to right, #aaa, #eee, #ccc); color: #111;">
+<div class="text-center d-md-none d-flex align-items-center justify-content-center logoText mt-0 pt-0" style="background: linear-gradient(to right, #aaa, #eee, #ccc); color: #111;">
 	<span class="m-0 p-0"><img src="/img/zakath_2.5p_1.svg" alt="logo" height="50"></span>
 	<span class="display-4 m-0 p-0">&nbsp;AL</span>
 	<spnan class="h4 m-0 p-0 font-weight-bold">imdaad<br>society</spnan>
@@ -12,7 +12,7 @@
 
 <nav class="navbar navbar-light text-info navbar-expand-sm font-weight-bold text-center bg-light" style="border-bottom: 3px solid #eee;">
 	<!-- To display in medium and above screens -->
-	<li class="d-none d-md-block border rounded border-primary mr-4 font-raleway_thin">
+	<li class="d-none d-md-block border rounded border-primary mr-4">
 		<div class="d-flex align-items-center justify-content-center logoText mt-0 pt-0" style="background: linear-gradient(to right, #aaa, #eee, #ccc); color: #111;">
 			<span class="m-0 p-0"><img src="/img/zakath_2.5p_1.svg" alt="logo" height="50"></span>
 			<span class="display-4 m-0 p-0">&nbsp;AL</span>
@@ -45,7 +45,7 @@
 
 			<li class="nav-item"><a class="nav-link" ng-class="getTabClass('/Donate')" href="/Donate"><i aria-hidden="true" class="fa fa-money"></i> Donate</a></li>
 
-			<li class="nav-item"><a class="nav-link" ng-class="getTabClass('/ZakathCalc')" href="/ZakathCalc"><i aria-hidden="true" class="fa fa-calculator"></i> Zakath Calc</a></li>
+			<li class="nav-item"><a class="nav-link" ng-class="getTabClass('/ZakathCalculator')" href="/ZakathCalculator"><i aria-hidden="true" class="fa fa-calculator"></i> Zakath Calc</a></li>
 
 			<li class="nav-item" ng-if="!isloggedIn"><a class="nav-link d-none" href="/Login"><i aria-hidden="true" class="fa fa-sign-in	"></i> Login</a></li>
 			<li class="nav-item" ng-if="isloggedIn"><a class="nav-link" href="/Logout"><i aria-hidden="true" class="fa fa-sign-out	"></i> Logout</a></li>
@@ -55,7 +55,7 @@
 				<div class="dropdown-menu dropdown-menu-right">
 					<a class="dropdown-item" href="/Donate"><i aria-hidden="true" class="fa fa-money"></i> Donate Now</a>
 					<a class="dropdown-item d-none" href="/VerifyDonation">Verify My Donation</a>
-					<a class="dropdown-item" href="/ZakathCalc"><i aria-hidden="true" class="fa fa-calculator"></i> Zakath Calculator</a>
+					<a class="dropdown-item" href="/ZakathCalculator"><i aria-hidden="true" class="fa fa-calculator"></i> Zakath Calculator</a>
 				</div>
 			</li>
 		</ul>

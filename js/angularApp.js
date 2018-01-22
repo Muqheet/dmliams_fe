@@ -38,7 +38,9 @@ var onlyLoggedIn = function($location, $q, $rootScope) {
 myApp.config(function($routeProvider, $locationProvider) {
   $routeProvider
     .when("/", {
-      templateUrl: "/templates/home.html"
+      title: "Alimdaad Society - Serving The Needy Round The Clock",
+      templateUrl: "/templates/home.html",
+      controller: "homeCtlr"
     })
     .when("/Login", {
       templateUrl: "/templates/login.html",
@@ -56,18 +58,22 @@ myApp.config(function($routeProvider, $locationProvider) {
       }
     })
     .when("/About", {
+      title: "About - AlimdaadSociety.org",
       templateUrl: "/templates/about.html"
     })
     .when("/Donate", {
+      title: "Donate - AlimdaadSociety.org",
       templateUrl: "/templates/donate.html"
     })
     .when("/VerifyDonation", {
       templateUrl: "/templates/verifyDonation.html"
     })
-    .when("/ZakathCalc", {
+    .when("/ZakathCalculator", {
+      title: "Zakath Calculator - AlimdaadSociety.org",
       templateUrl: "/templates/zakathCalc.html"
     })
     .when("/Gallery", {
+      title: "Gallery - AlimdaadSociety.org",
       templateUrl: "/templates/gallery.html"
     })
     .when("/secure/Dashboard", {
@@ -91,7 +97,7 @@ myApp.config(function($routeProvider, $locationProvider) {
       }
     })
     .when("/secure/UnderDevlopment", {
-      template: "<div class=\"d-flex text-center  display-4\">Application under Development</div>",
+      template: "<div class=\"d-flex text-center align-items-center display-4\">Application under Development</div>",
       resolve: {
         loggedIn: onlyLoggedIn
       },
@@ -102,6 +108,11 @@ myApp.config(function($routeProvider, $locationProvider) {
 
   $locationProvider.html5Mode(true);
 });
+myApp.run(['$rootScope', function($rootScope) {
+    $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
+        $rootScope.title = current.$$route.title;
+    });
+}]);
 
 //*****************************Home************************************
 myApp.controller("homeCtlr", function($scope, $location, $anchorScroll) {
@@ -119,7 +130,6 @@ myApp.controller("homeCtlr", function($scope, $location, $anchorScroll) {
 
   $scope.header = "/views/headerView.html";
   $scope.footer = "/views/footerView.html";
-  $scope.home = "/views/homeView.html";
   $scope.about = "/views/aboutView.html";
   $scope.contact = "/views/contactView.html";
   $scope.galleryCarousel = "/views/galleryCarouselView.html";

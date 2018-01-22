@@ -2,6 +2,39 @@
   display: none !important;
 }
 
+@media screen and (max-width: 580px) {
+  .container {
+    box-shadow: 2px 2px 5px 5px #eee;
+    margin-top: 40px;
+    margin-bottom: 50px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+  .display-3-res {
+    font-size: 45px;
+    font-weight: lighter;
+    font-stretch: ultra-expanded;
+  }
+  .tab-highliter {
+    background: #eee;
+    border-radius: 100px;
+  }
+}
+
+@media screen and (min-width: 580px) {
+  .display-3-res {
+    font-size: 4.0rem;
+    font-weight: 300;
+    line-height: 1.2
+  }
+  .tab-highliter {
+    border-bottom: 3px solid rgb(59, 97, 153);
+  }
+  .tab-highliter:hover {
+    border-bottom: 3px solid #2d5ca8;
+  }
+}
+
 @font-face {
   font-family: myFirstFont;
   src: url(sansation_light.woff);
@@ -16,22 +49,6 @@
   font-family: raleway_thin;
 }
 
-@media screen and (min-width: 580px) {
-  .container {
-    box-shadow: 2px 2px 5px 5px #eee;
-    margin-top: 40px;
-    margin-bottom: 50px;
-    padding-top: 15px;
-    padding-bottom: 15px;
-  }
-}
-
-.container {
-  min-height: 43vh;
-  margin-top: 30px;
-  margin-bottom: 35px;
-}
-
 #load {
   width: 100%;
   height: 100%;
@@ -40,31 +57,17 @@
   background: url("/img/loading2_circlefill.svg") no-repeat center center rgba(0, 0, 0, 0.5)
 }
 
-@media screen and (max-width: 580px) {
-  .tab-highliter {
-    background: #eee;
-    border-radius: 100px;
-  }
-}
-
-@media screen and (min-width: 580px) {
-  .tab-highliter {
-    border-bottom: 3px solid rgb(59, 97, 153);
-  }
-}
-
-.tab-highliter:hover {
-  border-bottom: 3px solid #2d5ca8;
-}
-
+.container {
+  min-height: 43vh;
+  margin-top: 30px;
+  margin-bottom: 35px;
 }
 
 .logoText {
-  font-weight: bolder;
   color: blue;
-  font-family: sans-serif, Helvetica, Arial;
-  font-size: 8vmin;
-  text-shadow: -1px 0 white, 0 0.3vh #999, 1px 0 white, 0 -1px white;
+  font-family: Arial, Helvetica, sans-serif;
+  /* font-size: 8vmin; */
+  /* text-shadow: -1px 0 white, 0 0.3vh #999, 1px 0 white, 0 -1px white; */
   -webkit-animation: colorchangelogoText 20s infinite alternate;
 }
 
