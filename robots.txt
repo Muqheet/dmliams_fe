@@ -1,0 +1,11 @@
+#This is used by search engines to crawl site contents
+
+
+#Sitemap link for search engines
+Sitemap: https://www.alimdaadsociety.org/sitemap.xml
+
+User-agent: *
+Disallow: /_redirects
+Disallow: /*.gif$
+Disallow: /*.svg$
+Disallow: /*.png$
