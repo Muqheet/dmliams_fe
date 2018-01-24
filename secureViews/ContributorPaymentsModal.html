@@ -8,40 +8,41 @@
 			</div>
 
 			<!-- Modal body -->
-			<div class="modal-body mr-2 ml-2">
-				<form id="formId" novalidate="novalidate">
-					<!-- Classes for div, label, input are applied by jQuery -->
-
+			<div class="modal-body">
+				<form id="formId" novalidate>
 
 					<div>
-						<label>Payment Amount</label><input name="payment_amount" required />
+						<label>Payment Amount</label>
+						<input name="payment_amount" required />
 					</div>
 
 					<div>
-						<label>Payment Date</label> <input name="payment_date" type="date" required />
+						<label>Payment Date</label>
+						<input name="payment_date" type="date" required />
 					</div>
 
 					<div>
 						<label>Payment Description</label>
 						<select name="payment_desc" required>
-						<option value="">-Select-</option>
-						<option value="Zakath">Zakath</option>
-						<option value="sadqa">sadqa</option>
-					</select>
+							<option value="">-Select-</option>
+							<option value="Zakath">Zakath</option>
+							<option value="sadqa">sadqa</option>
+						</select>
 					</div>
 
 					<div>
 						<label>Payment Mode</label>
 						<select name="payment_mode" required>
-						<option value="">-Select-</option>
-						<option value="Cash">Cash</option>
-						<option value="Debit/Credit Card">Debit/Credit Card</option>
-						<option value="Online Transfer">Online Transfer</option>
-					</select>
+							<option value="">-Select-</option>
+							<option value="Cash">Cash</option>
+							<option value="Debit/Credit Card">Debit/Credit Card</option>
+							<option value="Online Transfer">Online Transfer</option>
+						</select>
 					</div>
 
 					<div>
-						<label>Receipt No</label> <input name="receipt_no" required />
+						<label>Receipt No</label>
+						<input name="receipt_no" required />
 					</div>
 					<input class="d-none" name="contributorpaymentid" required />
 				</form>

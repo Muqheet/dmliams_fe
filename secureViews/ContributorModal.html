@@ -8,15 +8,20 @@
 			</div>
 
 			<!-- Modal body -->
-			<div class="modal-body mr-2 ml-2">
-				<form id="formId" novalidate="novalidate">
+			<div class="modal-body">
+				<form id="formId" novalidate>
 					<!-- Classes for div, label, input are applied by jQuery -->
 					<div>
 						<label>Full Name</label> <input name="name" required />
 					</div>
 
 					<div>
-						<label>Mobile</label> <input name="mobile" required />
+						<label>Mobile</label>
+						<select name="callingCodes" id="callingCodes" style="@media screen and (min-width: 580px) {width: 20%;}">
+		          <option value="91" selected>+91 (IN)</option>
+		          <option value="1">+1 (US)</option>
+		        </select>
+						<input name="mobile" required style="@media screen and (min-width: 580px) {width: 80%;}"/>
 					</div>
 					<div>
 						<label>Email</label> <input name="email" required />
@@ -33,6 +38,10 @@
 						<label>Country</label> <select name="country" id="countryId" required>
 						<option value="">-Select-</option>
 					</select>
+					<!-- populate country list -->
+					<script type="text/javascript">
+						populateCountryList('countryId');
+					</script>
 					</div>
 					<div>
 						<label>State</label> <select name="state">
@@ -53,9 +62,8 @@
 						<label>ZIP Code</label> <input name="zipcode" required />
 					</div>
 					<input name="contributorid" class="form-control col-md d-none" required />
+				</form>
 			</div>
-
-			</form>
 			<!-- Modal footer -->
 			<div class="modal-footer">
 				<button id="addSubmitBtn" type="submit" class="btn btn-primary">Add</button>
@@ -65,6 +73,3 @@
 		</div>
 	</div>
 </div>
-
-<!-- Location script -->
-<!-- <script src="/js/countryStateCity.js"></script> -->

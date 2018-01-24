@@ -1,15 +1,25 @@
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
 }
-
+.container {
+  min-height: 43vh;
+  margin-top: 30px;
+  margin-bottom: 35px;
+}
+/* used in bootstrap modal froms */
+#formId div {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
 @media screen and (max-width: 580px) {
-  .container {
-    box-shadow: 2px 2px 5px 5px #eee;
-    margin-top: 40px;
-    margin-bottom: 50px;
-    padding-top: 15px;
-    padding-bottom: 15px;
+  /* To be remove */
+  #formId input, select {
+    width: 100%;
   }
+  #formId label {
+    font-weight: bold;
+  }
+
   .display-3-res {
     font-size: 45px;
     font-weight: lighter;
@@ -22,6 +32,27 @@
 }
 
 @media screen and (min-width: 580px) {
+  /* To be remove */
+  #formId input, select {
+    width: 70%;
+  }
+  #formId label {
+    font-weight: bold;
+    width: 20%;
+  }
+  #formId div:hover {
+    color: blue;
+    background: #ffe;
+  }
+
+  .container {
+    box-shadow: 2px 2px 5px 5px #eee;
+    margin-top: 40px;
+    margin-bottom: 50px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+
   .display-3-res {
     font-size: 4.0rem;
     font-weight: 300;
@@ -33,11 +64,6 @@
   .tab-highliter:hover {
     border-bottom: 3px solid #2d5ca8;
   }
-}
-
-@font-face {
-  font-family: myFirstFont;
-  src: url(sansation_light.woff);
 }
 
 @font-face {
@@ -55,12 +81,6 @@
   position: fixed;
   z-index: 9999;
   background: url("/img/loading2_circlefill.svg") no-repeat center center rgba(0, 0, 0, 0.5)
-}
-
-.container {
-  min-height: 43vh;
-  margin-top: 30px;
-  margin-bottom: 35px;
 }
 
 .logoText {
@@ -111,9 +131,9 @@
   text-decoration: none;
 }
 
-body, html {
-  /* font-family: ff-din-web-pro, Helvetica, Arial, sans-serif; */
-}
+/* body, html {
+  font-family: Helvetica, Arial, sans-serif;
+} */
 
 /* used for home background stage image */
 
@@ -137,7 +157,6 @@ body, html {
   border: 1px solid #eee;
   text-align: center;
   position: sticky;
-  /* vertical-align: middle; */
 }
 
 .img-gal:hover {

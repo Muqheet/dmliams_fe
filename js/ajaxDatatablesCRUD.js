@@ -18,20 +18,26 @@ function selectedRowId() {
 }
 
 function createTable(tableData) {
+  $(document).off('click');//Removing any previous click handlers
+
   var tid = '#' + tableData.tableId;
   var fid = '#' + tableData.formId;
+  var gAjax = tableData.getAjax;
+  var aAjax = tableData.addAjax;/*0:url, 1:method*/
+  var eAjax = tableData.editAjax;
+  var dAjax = tableData.deleteAjax;
 
   (function jsonData() {
-    var url = tableData.getAjax[0];
+    var url = gAjax[0];
     $.ajax({
       url: url,
       headers : headers,
       success: function(data, textStatus, req) {
+        $(tid).removeClass('d-none');//To show table on ajax success
         console.log(data)
         populateTable(data);
       },
       error: function() {
-        $(tid).removeClass('d-none');
         $(tid).html('<div class="text-danger">Error occured, unable to load data.</div>');
         // alert('Error occured, unable to load data.');
       }
@@ -44,7 +50,7 @@ function createTable(tableData) {
     (function insertCrudBtns() {
 
       $(tid).before(
-        '<div class="bs-callout bs-callout-info alert alert-dismissable fade show">' +
+        '<div class="d-none bs-callout bs-callout-info alert alert-dismissable fade show">' +
         '<button type="button" class="close bg-light" data-dismiss="alert">&times;</button>'+
         '<p><span class="badge badge-secondary">1</span> Click on the <span class="text-primary">Add New</span> button to add a new record</p>' +
         '<p><span class="badge badge-secondary">2</span> Click on the table row to select / deselect a record</p>' +
@@ -70,7 +76,6 @@ function createTable(tableData) {
 
     //console.log(tableData)
     dataTableObj = $(tid).DataTable({
-      destroy: true,
       data: data,
       columns: tableData.columns,
       createdRow: tableData.createdRow,
@@ -82,30 +87,28 @@ function createTable(tableData) {
       lengthMenu: [
         [10, 20, 50, 100, -1],
         [10, 20, 50, 100, 'All']
-      ]
-      // scrollY: '100vh',/* To scroll vertically */
-      //scrollCollapse: true
+      ],
+      destroy: true,
+      /* scrollY: '100vh',/* To scroll vertically */
+      /*scrollCollapse: true*/
     });
   }
 
   //Start of Events
   $('table tbody').off('click').on('click', 'tr', rowSelection);
 
-  $(addBtn).click(rowAdditionPopup);
+  $('body').on('click', addBtn, rowAdditionPopup);
+  $('body').on('click', editBtn, rowEditionPopup);
+  $('body').on('click', deleteBtn, rowDeletionPopup);
 
-  $(editBtn).click(rowEditionPopup);
+  $(document).on('click', deleteSubmitBtn, deleteRecord);
+  $(document).on('click', addSubmitBtn, addRecord);
+  $(document).on('click', editSubmitBtn, editRecord);
 
-  $(deleteBtn).on('click', rowDeletionPopup);
-
-  $(deleteSubmitBtn).off('click').on('click', deleteRecord);
-
-  //On form submit do Ajax & close modal on success.
-  $(addSubmitBtn).off('click').on('click', addRecord);
-
-  $(editSubmitBtn).off('click').on('click', editRecord);
-
-
-  //$('#'+tableData.formId).on('keyup keypress', preventFormSubmit);
+  $(document).on('shown.bs.modal', oprModal, function() {
+    console.log('modal opened');
+    $(fid+' input').eq(0).focus();
+  });
 
   //End of Events
 
@@ -136,6 +139,7 @@ function createTable(tableData) {
 
   function rowEditionPopup() {
     //Open modal, change modal header, hide one of submitBtn.
+
     $(oprModalHeader).html('Edit Record');
     $(addSubmitBtn).hide();
     $(editSubmitBtn).show();
@@ -149,7 +153,7 @@ function createTable(tableData) {
 
   function addRecord() {
 
-    if (form.valid()) {
+    /* if (form.valid()) */ {
       currentBtnId = $(this).attr('id');
       addLoadingIcon(currentBtnId);
 
@@ -157,8 +161,8 @@ function createTable(tableData) {
       console.log('form data: ' + formData);
 
       $.ajax({
-        url: tableData.addAjax[0],
-        method: tableData.addAjax[1],
+        url: aAjax[0],
+        method: aAjax[1],
         headers : headers,
         contentType: "application/json; charset=utf-8",
         data: formData,
@@ -182,13 +186,15 @@ function createTable(tableData) {
   }
 
   function editRecord() {
-    if (form.valid()) {
+    currentBtnId = $(this).attr('id');
+    addLoadingIcon(currentBtnId);
+    /* if (form.valid()) */{
 
       var formData = $(fid).serializeFormJSON();
       console.log('form data: ' + formData);
       $.ajax({
-        url: tableData.editAjax[0],
-        method: tableData.editAjax[1],
+        url: eAjax[0],
+        method: eAjax[1],
         headers : headers,
         contentType: "application/json; charset=utf-8",
         data: formData,
@@ -202,6 +208,9 @@ function createTable(tableData) {
         },
         error: function() {
           alert('Error occured');
+        },
+        complete: function() {
+          removeLoadingIcon(currentBtnId);
         }
       });
     }
@@ -211,10 +220,11 @@ function createTable(tableData) {
     currentBtnId = $(this).attr('id');
     addLoadingIcon(currentBtnId);
     $.ajax({
-      url: tableData.deleteAjax[0] + selectedRowId(),
-      method: tableData.deleteAjax[1],
+      url: dAjax[0] + selectedRowId(),
+      method: dAjax[1],
       headers : headers,
-      success: function() {
+      success: function(jqXhr) {
+        console.log(jqXhr.status);
         //using dataTable API methods to delete row from table
         $(deleteModal).modal('hide');
         $('tr.' + rowClickedClass)
@@ -226,10 +236,10 @@ function createTable(tableData) {
             disableBtns();
           });
       },
-      error: function(XMLHttpRequest, textStatus, errorThrown) {
-        console.log(textStatus + ' ' + errorThrown + ' ' + XMLHttpRequest);
+      error: function(jqXhr) {
+        console.log();
         $(deleteModal).modal('hide');
-        alert(textStatus + ' occured ' + errorThrown);
+        alert('Error occured ' + jqXhr.status);
       },
       complete: function() {
         removeLoadingIcon(currentBtnId);
@@ -258,7 +268,7 @@ function createTable(tableData) {
     rules: tableData.validationRules
   });
 
-  // Used By Edit
+  /* Used By Edit */
   function fillFormFieldsToEdit() {
     var rowData = dataTableObj.row('tr.' + rowClickedClass).data();
     $(fid + ' :input').each(function() {
@@ -267,7 +277,7 @@ function createTable(tableData) {
         var ip1 = this;
         console.log(ip1);
         console.log($(ip).attr('name'));
-        if (ip1[0] === $(ip).attr('name')) { //at index'0' get key & at index '1' get value
+        if (ip1[0] === $(ip).attr('name')) { /*at index'0' get key & at index '1' get value*/
           console.log('done');
           $(ip).val(ip1[1]);
         }
@@ -279,15 +289,6 @@ function createTable(tableData) {
     $(editBtn +','+ deleteBtn).attr('disabled', 'disabled');
     $(addBtn).removeAttr('disabled');
     $('tr.' + rowClickedClass).removeClass(rowClickedClass);
-  }
-
-  //prevents form from being submitted by enter key
-  function preventFormSubmit(e) {
-    var keyCode = e.keyCode || e.which;
-    if (keyCode === 13) {
-      e.preventDefault();
-      //return false;
-    }
   }
 
   //End of createTable

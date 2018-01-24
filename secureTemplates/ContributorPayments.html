@@ -8,10 +8,6 @@
 		</ol>
 	</nav>
 
-	<!-- Add/Edit Contributor Modal -->
-	<div ng-include="ContributorPaymentsModal"></div>
-	<div ng-include="DeleteModal"></div>
-
 	<table id="contributorPaymentsTbl" class="table table-hover table-striped table-bordered text-center" style="width: 100%;">
 		<thead>
 			<tr>
@@ -42,7 +38,6 @@
 <script src="/js/datatables.min.js"></script>
 <script src="/js/ajaxDatatablesCRUD.js"></script>
 <script src="/js/countryStateCity.js"></script>
-<script src="/js/myJs.js"></script>
 
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -64,6 +59,8 @@
 		    	$(row).attr('id', data.contributorpaymentid);
 		    },
 			recordId: 'contributorpaymentid',
+			oprModalPath: '/secureViews/ContributorPaymentsModal.html',
+			deleteModalPath: '/secureViews/DeleteModal.html',
 
 			//ajax related
 			getAjax : [domainName+'/api/ContributorPayments/'+contrId+ '/', 'get'],
@@ -84,31 +81,6 @@
 		}
 		//Function is called
 		createTable(tableData);
-
-		//apply modal classes
-		(function applyModalClasses(){
-			$formIp = $('#formId > div > :input');
-			$formGrp = $('#formId > div');
-			$formLabel = $('#formId > div > label');
-
-			if(! $formIp.hasClass('form-control col-md')) {
-				$formIp.addClass('form-control col-md');
-				$formGrp.addClass('form-group row');
-				$formLabel.addClass('col-md-4 p-0');
-			}
-		})();
-
-		//Clear data on modal close
-		(function modalOperations() {
-			$oprModal = $('#oprModal');
-			$oprModal.on('hidden.bs.modal', function() {
-				//clearFields();
-				$('#formId label.invalid-feedback, #formId label.valid-feedback').remove();
-			});
-			$oprModal.on('shown.bs.modal', function() {
-				$('#formId input').eq(0).focus();
-			});
-		})();
-
+		
 	});
 </script>

@@ -1,7 +1,7 @@
 var myApp = angular.module("myApp", ["ngRoute", "ngResource", "ngAnimate"]);
 
 /*Global variables*/
-var isloggedIn = '';
+var isloggedIn;
 var domainName = 'http://localhost:8090'; //url of backend domain for rest api
 var JwtHeader = '';
 function getJwtHeader() {
@@ -20,10 +20,10 @@ function removeLoadingIcon(id) {
   $('#'+id).removeAttr('disabled');
   $('#l_ico').remove();
 }
-
+/* To check loggedin or not */
 var onlyLoggedIn = function($location, $q, $rootScope) {
   var deferred = $q.defer();
-  $rootScope.isloggedIn = false;//set to false
+  // $rootScope.isloggedIn = false;//set to false
   if ($rootScope.isloggedIn) {
     deferred.resolve();
   } else {
@@ -38,51 +38,56 @@ var onlyLoggedIn = function($location, $q, $rootScope) {
 myApp.config(function($routeProvider, $locationProvider) {
   $routeProvider
     .when("/", {
-      title: "Alimdaad Society - Serving The Needy Round The Clock",
+      title: "Al Imdaad Society | Serving The Needy Round The Clock",
       templateUrl: "/templates/home.html",
       controller: "homeCtlr"
     })
-    .when("/Login", {
-      templateUrl: "/templates/login.html",
-      controller: "loginCtlr"
-    })
-    .when("/Register", {
-      templateUrl: "/templates/register.html",
-      controller: "registerCtlr"
-    })
-    .when("/Logout", {
-      templateUrl: "/templates/login.html",
-      controller: "logoutCtlr",
-      resolve: {
-        loggedIn: onlyLoggedIn
-      }
-    })
     .when("/About", {
-      title: "About - AlimdaadSociety.org",
+      title: "About | AlimdaadSociety.org",
       templateUrl: "/templates/about.html"
     })
     .when("/Donate", {
-      title: "Donate - AlimdaadSociety.org",
+      title: "Donate | AlimdaadSociety.org",
       templateUrl: "/templates/donate.html"
     })
     .when("/VerifyDonation", {
       templateUrl: "/templates/verifyDonation.html"
     })
     .when("/ZakathCalculator", {
-      title: "Zakath Calculator - AlimdaadSociety.org",
+      title: "Zakath Calculator | AlimdaadSociety.org",
       templateUrl: "/templates/zakathCalc.html"
     })
     .when("/Gallery", {
-      title: "Gallery - AlimdaadSociety.org",
+      title: "Gallery | AlimdaadSociety.org",
       templateUrl: "/templates/gallery.html"
     })
+    .when("/Login", {
+      title: "Login | AlimdaadSociety.org",
+      templateUrl: "/templates/login.html",
+      controller: "loginCtlr"
+    })
+    .when("/Register", {
+      title: "Register | AlimdaadSociety.org",
+      templateUrl: "/templates/register.html",
+      controller: "registerCtlr"
+    })
+    .when("/Logout", {
+      title: "Logout | AlimdaadSociety.org",
+      templateUrl: "/templates/login.html",
+      controller: "logoutCtlr",
+      resolve: {
+        loggedIn: onlyLoggedIn
+      }
+    })
     .when("/secure/Dashboard", {
+      title: "Dashboard | AlimdaadSociety.org",
       templateUrl: "/secureTemplates/dashboard.html",
       resolve: {
         loggedIn: onlyLoggedIn
       }
     })
     .when("/secure/Contributors", {
+      title: "Contributors | AlimdaadSociety.org",
       templateUrl: "/secureTemplates/Contributors.html",
       controller: "contributorCtlr",
       resolve: {
@@ -90,6 +95,7 @@ myApp.config(function($routeProvider, $locationProvider) {
       }
     })
     .when("/secure/ContributorPayments/:id", {
+      title: "ContributorPayments | AlimdaadSociety.org",
       templateUrl: "/secureTemplates/ContributorPayments.html",
       controller: "contributorPaymentsCtlr",
       resolve: {
@@ -97,20 +103,22 @@ myApp.config(function($routeProvider, $locationProvider) {
       }
     })
     .when("/secure/UnderDevlopment", {
+      title: "UnderDevlopment | AlimdaadSociety.org",
       template: "<div class=\"d-flex text-center align-items-center display-4\">Application under Development</div>",
       resolve: {
         loggedIn: onlyLoggedIn
       },
     })
     .otherwise({
-      template: "<h1>Oops! Page Not Found</h1>"
+      title: "Page Not Found | AlimdaadSociety.org",
+      template: "<h1 class=\"text-center\">Oops! Page Not Found</h1>"
     });
 
   $locationProvider.html5Mode(true);
 });
 myApp.run(['$rootScope', function($rootScope) {
     $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
-        $rootScope.title = current.$$route.title;
+        document.title = current.$$route.title;
     });
 }]);
 
@@ -134,8 +142,6 @@ myApp.controller("homeCtlr", function($scope, $location, $anchorScroll) {
   $scope.contact = "/views/contactView.html";
   $scope.galleryCarousel = "/views/galleryCarouselView.html";
   $scope.founderPortfolio = "/views/founderView.html";
-  $scope.loginTab = "/views/loginTabView.html";
-  $scope.registerTab = "/views/registerTabView.html";
   $scope.DeleteModal = "/secureViews/DeleteModal.html";
 
 });
@@ -158,7 +164,6 @@ myApp.controller("registerCtlr", function($http) {
 myApp.controller("loginCtlr", function($scope, $http, $location, $log, $rootScope) {
   var successCallBack = function(response) {
     $rootScope.isloggedIn = true;
-    console.log(response.status);
     JwtHeader = response.headers('Authorization');
     setJwtHeader(JwtHeader);
     $location.path('/secure/Dashboard');
@@ -167,17 +172,20 @@ myApp.controller("loginCtlr", function($scope, $http, $location, $log, $rootScop
     $rootScope.isloggedIn = false;
     $scope.email = $scope.password = "";
     console.log(response.status);
-
     $scope.loginResultClass = 'alert alert-danger';
     if (response.status === 401) {
       $scope.loginResultMessage = 'Invalid credentials, Please try with valid one.';
     } else {
       $scope.loginResultMessage = 'Oops, Something went wrong, Please try later.';
     }
-  }
+    }
+    var completeCallBack = function() {
+      removeLoadingIcon(currentBtnId);
+    }
+    var currentBtnId = 'loginBtn';
+    $scope.formSubmit = function() {
+    addLoadingIcon(currentBtnId);
 
-
-  $scope.formSubmit = function() {
     var d = {
       email: $scope.email,
       password: $scope.password
@@ -187,7 +195,7 @@ myApp.controller("loginCtlr", function($scope, $http, $location, $log, $rootScop
         data: JSON.stringify(d),
         method: "post",
       })
-      .then(successCallBack, errorCallBack);
+      .then(successCallBack, errorCallBack).then(completeCallBack);
   };
 
 });

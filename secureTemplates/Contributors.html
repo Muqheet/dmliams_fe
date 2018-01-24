@@ -47,7 +47,6 @@
 <script src="/js/datatables.min.js"></script>
 <script src="/js/ajaxDatatablesCRUD.js"></script>
 <script src="/js/countryStateCity.js"></script>
-<script src="/js/myJs.js"></script>
 
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -127,18 +126,17 @@
 		})();
 
 		//Clear i/p fields on modal close
-		(function modalOperations() {
-			$oprModal = $('#oprModal');
-			$oprModal.on('hidden.bs.modal', function() {
-				$('#formId label.invalid-feedback, #formId label.valid-feedback').remove();
-			});
-			$oprModal.on('shown.bs.modal', function() {
-				$('#formId input').eq(0).focus();
-			});
-		})();
+		// (function modalOperations() {
+		// 	$oprModal = $('#oprModal');
+		// 	$oprModal.on('hidden.bs.modal', function() {
+		// 		$('#formId label.invalid-feedback, #formId label.valid-feedback').remove();
+		// 	});
+		// 	$oprModal.on('shown.bs.modal', function() {
+		// 		$('#formId input').eq(0).focus();
+		// 	});
+		// })();
 
 		//to populate country list
-		populateCountryList('countryId');
 
 	});
 </script>
