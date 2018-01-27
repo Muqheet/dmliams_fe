@@ -21,7 +21,7 @@
   }
 
   .display-3-res {
-    font-size: 45px;
+    font-size: 50px;
     font-weight: lighter;
     font-stretch: ultra-expanded;
   }
@@ -48,13 +48,13 @@
   .container {
     box-shadow: 2px 2px 5px 5px #eee;
     margin-top: 40px;
-    margin-bottom: 50px;
+    margin-bottom: 55px;
     padding-top: 15px;
     padding-bottom: 15px;
   }
 
   .display-3-res {
-    font-size: 4.0rem;
+    font-size: 4.5rem;
     font-weight: 300;
     line-height: 1.2
   }
