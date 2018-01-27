@@ -62,7 +62,7 @@ function createTable(tableData) {
         '<div id="crudBtns" class="sticky-top mb-4 text-center bg-light">' +
         '<button id="addBtn" class="btn btn-primary mr-1 " >Add New <i aria-hidden="true" class="fa fa-plus-circle"></i></button>' +
         '<button id="editBtn" class="btn btn-info mr-1 " disabled="disabled">Edit <i aria-hidden="true" class="fa fa-edit"></i></button>' +
-        '<button id="deleteBtn" class="btn btn-danger mr-1 " disabled="disabled">Delete <i aria-hidden="true" class="fa fa-remove"></i></button>' +
+        '<button id="deleteBtn" class="btn btn-danger mr-1 " disabled="disabled">Delete <i aria-hidden="true" class="fa-trash"></i></button>' +
         '</div>'
       );
       //load modals
