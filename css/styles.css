@@ -76,6 +76,7 @@
 }
 
 .loader, #load {
+  opacity: 0.8;
   position: absolute;
   left: 50%;
   top: 50%;

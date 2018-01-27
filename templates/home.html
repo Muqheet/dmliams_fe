@@ -3,7 +3,7 @@
   $(document).ready(function() {
     //remove default container class
     $('section.container').removeClass();
-
+  $('#galleryCarousel').load('/views/galleryCarouselView.html');
 
     // //make animation by toglling classes to home BgImage stage
     // $('#donateStgBtn')
@@ -45,11 +45,9 @@
 <!-- aboutView -->
 <div ng-include="about" id="about"></div>
 
-<!-- founderPortfolio is included in aboutView -->
-<!-- <div ng-include="founderPortfolio"></div> -->
-
 <!-- gallery slideshow -->
-<div ng-include="galleryCarousel"></div>
+<!-- <div ng-include="galleryCarousel"></div> -->
+<div id="galleryCarousel"><span class="loader"></span></div>
 
 <!-- contact -->
 <div ng-include="contact" id="contact"></div>
