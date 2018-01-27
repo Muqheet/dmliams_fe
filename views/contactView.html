@@ -4,8 +4,8 @@
 				$id = $('#contactSubmitBtn');
 				$id.attr('disabled', 'disabled');
 				$.ajax({
-					url: "/PostContactForm",
-					method: "post",
+					url: "/",
+					method: "get",
 					data: $('#contactForm').serialize(),
 					success: function(data) {
 						alert('Your message has been posted successfully.');
