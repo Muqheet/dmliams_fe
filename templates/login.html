@@ -1,6 +1,6 @@
 <div ng-controller="loginCtlr">
 
-	<ul class="nav nav-tabs ml-auto mr-auto col-md-6">
+	<ul class="nav justify-content-center">
 		<li class="nav-item">
 			<a class="nav-link" href="/Login" ng-class="getTabClass('/Login')">Login</a>
 		</li>
@@ -8,7 +8,6 @@
 			<a class="nav-link" href="/Register" ng-class="getTabClass('/Register')">Register</a>
 		</li>
 	</ul>
-	<!-- <hr class="mt-auto mr-auto"> -->
 
 	<!-- Login Tab View -->
 	<div class="card card-body bg-light ml-auto mr-auto col-md-6">
@@ -28,31 +27,61 @@
 			</div>
 			<button class="btn btn-primary w-100" type="submit" id="loginBtn">Login</button>
 		</form>
-
 	</div>
+		<ul class="nav justify-content-center">
+			<li class="m-2"><a href="#" data-toggle="modal" data-target="#fp-modal">Forgot Password?</a></li>
+			<li class="m-2"><a href="/Register">New User Registration</a></li>
+		</ul>
+<!-- Modal -->
+<div class="modal fade" id="fp-modal" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Forgot Password</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
 
+				<form class="">
+					<div class="alert alert-info" id="fp-alert" style="display: none;">
+						Check your inbox for the next steps. If you don't receive an email, and it's not in your spam folder this could mean you signed up with a different address.
+					</div>
+					<div class="form-group">
+						<label for="">Enter your email address below and we'll send you a link to reset your password.</label>
+						<input type="email" name="fp-email" placeholder="Email" class="form-control">
+					</div>
+				</form>
+			</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="fp-reset">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-	<!-- <script>
+<script>
 	$(document).ready(function() {
-		// $('#myTab').click(function(e) {
-		// 	e.preventDefault();
-		// })
-		$('#loginBtn, #registerBtn').click(function() {
+		$('#fp-reset').click(function() {
 			$(this).attr('disabled', 'disabled');
-			var _temp = $(this).text();
-			$(this).html(_temp + ' <img src="/img/loading2_circlefill.svg" height="20" id="loading_icon" class="m-0"/>');
+			currentBtnId = $(this).attr('id');
+	    addLoadingIcon(currentBtnId);
 			$.ajax({
-				url: "/auth-login",
+				url: domainName+"/ForgotPassword",
+				data: "{}",
 				method: "post",
-				data: $('#loginForm').serialize(),
 				success: function(data) {
-					/* alert(data); */
+					$('#fp-alert').show().delay('4000').remove();
 				},
 				error: function(XMLHttpRequest, textStatus, errorThrown) {
-					/* alert('An ' + textStatus + ' occured ' + errorThrown); */
+					alert('An error occured ' + errorThrown);
+				},
+				complete: function() {
+					removeLoadingIcon(currentBtnId);
 				}
 			});
 		});
-
 	});
-</script> -->
+</script>

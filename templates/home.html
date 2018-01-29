@@ -1,9 +1,10 @@
 <script>
   //remove container class on homepage to expand across the full width
   $(document).ready(function() {
-    //remove default container class
+    /*remove default container class to exapan across full width*/
     $('section.container').removeClass();
-  $('#galleryCarousel').load('/views/galleryCarouselView.html');
+    $('#galleryCarousel').load('/views/galleryCarouselView.html');
+    $('.loader').fadeOut();
 
     // //make animation by toglling classes to home BgImage stage
     // $('#donateStgBtn')
@@ -47,7 +48,8 @@
 
 <!-- gallery slideshow -->
 <!-- <div ng-include="galleryCarousel"></div> -->
-<div id="galleryCarousel"><span class="loader"></span></div>
+<div class="loader" id="1"></div>
+<div id="galleryCarousel"></div>
 
 <!-- contact -->
 <div ng-include="contact" id="contact"></div>

@@ -14,7 +14,7 @@
 
 		function toggleQuotes() {
 			var index = 0; // index of the currently displayed
-			$("#donateQuotes").text('"' + quotes[0] + '"'); // start by showing first index
+			$("#donateQuotes").text('"' + quotes[0] + '"').delay('3000'); // start by showing first index and some delay
 
 			(function animate() { // the function responsibe for the animation
 				$("#donateQuotes")
@@ -28,7 +28,7 @@
 						index = (index + 1) % quotes.length; // when fadeOut complete, increment the index (check if go beyond the length of the array)
 						this.textContent = '"' + quotes[index] + '"'; // change text accordingly
 					})
-					.fadeIn(500, animate)
+					.fadeIn(1000, animate)
 					.delay(2000); // then fadeIn. When fadeIn finishes, call animate again
 			})();
 		}

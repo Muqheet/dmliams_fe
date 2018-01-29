@@ -62,7 +62,7 @@ function createTable(tableData) {
         '<div id="crudBtns" class="sticky-top mb-4 text-center bg-light">' +
         '<button id="addBtn" class="btn btn-primary mr-1 " >Add New <i aria-hidden="true" class="fa fa-plus-circle"></i></button>' +
         '<button id="editBtn" class="btn btn-info mr-1 " disabled="disabled">Edit <i aria-hidden="true" class="fa fa-edit"></i></button>' +
-        '<button id="deleteBtn" class="btn btn-danger mr-1 " disabled="disabled">Delete <i aria-hidden="true" class="fa-trash"></i></button>' +
+        '<button id="deleteBtn" class="btn btn-danger mr-1 " disabled="disabled">Delete <i aria-hidden="true" class="fa fa-trash"></i></button>' +
         '</div>'
       );
       //load modals
@@ -70,6 +70,7 @@ function createTable(tableData) {
       $('#modal1').load(tableData.oprModalPath);
       $('#modal2').load(tableData.deleteModalPath);
 
+      $(tid).before('<div class="bs-callout bs-callout-info" id="tbl-opr-alert" style="display:none;"></div>');
     })();
 
 
@@ -150,15 +151,30 @@ function createTable(tableData) {
   function rowDeletionPopup() {
     $(deleteModal).modal('show');
   }
-
+function validateForm() {
+  $(fid).validate({
+      // ignore: '*',
+      errorClass: "invalid-feedback font-weight-normal",
+      validClass: "valid-feedback font-weight-normal",
+      highlight: function(element, errorClass, validClass) {
+        return false; /* ensure this function stops, to prevent applying error classes to other sibling input elements */
+      },
+      unhighlight: function(element, errorClass, validClass) {
+        return false; /* ensure this function stops*/
+      },
+      // errorPlacement: function(error, element) {
+      //   error.appendTo( element.siblings('label').next('label') );
+      // },
+      rules: tableData.validationRules
+    });
+}
   function addRecord() {
-
-    /* if (form.valid()) */ {
+    validateForm();
+     if ($(fid).valid())  {
       currentBtnId = $(this).attr('id');
       addLoadingIcon(currentBtnId);
-
       var formData = $(fid).serializeFormJSON();
-      console.log('form data: ' + formData);
+      /* console.log('form data: ' + formData);*/
 
       $.ajax({
         url: aAjax[0],
@@ -169,11 +185,12 @@ function createTable(tableData) {
         success: function(data) {
           console.log('add success');
           var fData = JSON.parse(formData);
-          var rId = tableData.recordId; //Get Record Id from tableData
-          fData[rId] = data; //Set Record Id from response of rest api
+          var rId = tableData.recordId; /*Get Record Id from tableData*/
+          fData[rId] = data; /*Set Record Id from response of rest api*/
           console.log(fData);
           $(oprModal).modal('hide');
           dataTableObj.row.add(fData).draw();
+          $('#tbl-opr-alert').html('1 record has been added.').show().delay('3000').fadeOut();
         },
         error: function() {
           alert('Error occured');
@@ -186,12 +203,13 @@ function createTable(tableData) {
   }
 
   function editRecord() {
-    currentBtnId = $(this).attr('id');
-    addLoadingIcon(currentBtnId);
-    /* if (form.valid()) */{
-
+    validateForm();
+    if ($(fid).valid()) {
+      currentBtnId = $(this).attr('id');
+      addLoadingIcon(currentBtnId);
       var formData = $(fid).serializeFormJSON();
-      console.log('form data: ' + formData);
+      /* console.log('form data: ' + formData);*/
+
       $.ajax({
         url: eAjax[0],
         method: eAjax[1],
@@ -199,12 +217,11 @@ function createTable(tableData) {
         contentType: "application/json; charset=utf-8",
         data: formData,
         success: function() {
-          console.log('edit success');
+          // console.log('edit success');
           $(oprModal).modal('hide');
           dataTableObj.row('tr.' + rowClickedClass).data(JSON.parse(formData)).draw();
-          $('tr.' + rowClickedClass)
-            .css('color', 'green')
-            .animate( {color: '#000'}, disableBtns);
+          disableBtns();
+          $('#tbl-opr-alert').html('1 record has been edited.').show().delay('3000').fadeOut();
         },
         error: function() {
           alert('Error occured');
@@ -224,7 +241,7 @@ function createTable(tableData) {
       method: dAjax[1],
       headers : headers,
       success: function(jqXhr) {
-        console.log(jqXhr.status);
+        // console.log(jqXhr.status);
         //using dataTable API methods to delete row from table
         $(deleteModal).modal('hide');
         $('tr.' + rowClickedClass)
@@ -237,7 +254,6 @@ function createTable(tableData) {
           });
       },
       error: function(jqXhr) {
-        console.log();
         $(deleteModal).modal('hide');
         alert('Error occured ' + jqXhr.status);
       },
@@ -246,27 +262,6 @@ function createTable(tableData) {
       }
     });
   }
-
-  //function is executed automatically, no need to call as enclosed with (fn)().
-  var form = $(fid);
-  form.validate({
-    // 	submitHandler: function() {
-    //
-    // },
-    // ignore: '*',
-    errorClass: "invalid-feedback row col-md-12 pt-0",
-    validClass: "valid-feedback row col-md-12 pt-0",
-    highlight: function(element, errorClass, validClass) {
-      return false; // ensure this function stops, to prevent applying error classes to other sibling input elements
-    },
-    unhighlight: function(element, errorClass, validClass) {
-      return false; // ensure this function stops
-    },
-    /*errorPlacement: function(error, element) {
-    			error.appendTo( element.siblings('label').next('label') );
-    	},*/
-    rules: tableData.validationRules
-  });
 
   /* Used By Edit */
   function fillFormFieldsToEdit() {
@@ -291,7 +286,7 @@ function createTable(tableData) {
     $('tr.' + rowClickedClass).removeClass(rowClickedClass);
   }
 
-  //End of createTable
+  /*End of createTable*/
 }
 
 (function($) {

@@ -1,3 +1,22 @@
+<!-- <style scoped>
+	@media screen and (min-width: 580px) {
+		#formId .w-sm {
+			width: 15%;
+		}
+		#formId .w-lg {
+			width: 55%;
+		}
+	}
+
+	@media screen and (max-width: 580px) {
+		#formId .w-sm {
+			width: 30%;
+		}
+		#formId .w-lg {
+			width: 70%;
+		}
+	} -->
+</style>
 <div class="modal" data-backdrop="static" tabindex="-1" aria-hidden="true" id="oprModal">
 	<div class="modal-dialog  modal-lg" role="document">
 		<div class="modal-content">
@@ -10,38 +29,38 @@
 			<!-- Modal body -->
 			<div class="modal-body">
 				<form id="formId" novalidate>
-					<!-- Classes for div, label, input are applied by jQuery -->
 					<div>
 						<label>Full Name</label> <input name="name" required />
 					</div>
 
 					<div>
 						<label>Mobile</label>
-						<select name="callingCodes" id="callingCodes" style="@media screen and (min-width: 580px) {width: 20%;}">
-		          <option value="91" selected>+91 (IN)</option>
-		          <option value="1">+1 (US)</option>
-		        </select>
-						<input name="mobile" required style="@media screen and (min-width: 580px) {width: 80%;}"/>
+						<select name="callingCodes" id="callingCodes" style="width:20%; margin-right: -6px;">
+					          <option value="91" select>+91 (IN)</option>
+					          <option value="1">+1 (US)</option>
+					        </select>
+						<input name="mobile" required style="width:80%;">
 					</div>
 					<div>
 						<label>Email</label> <input name="email" required />
 					</div>
 					<div>
-						<label>Gender</label> <select name="gender" required>
-						<option value="">-Select-</option>
-						<option value="Male">Male</option>
-						<option value="Female">Female</option>
-						<option value="Other">Other</option>
-					</select>
+						<label>Gender</label>
+						<select name="gender" required>
+							<option value="">-Select-</option>
+							<option value="Male">Male</option>
+							<option value="Female">Female</option>
+							<option value="Other">Other</option>
+						</select>
 					</div>
 					<div>
 						<label>Country</label> <select name="country" id="countryId" required>
 						<option value="">-Select-</option>
 					</select>
-					<!-- populate country list -->
-					<script type="text/javascript">
-						populateCountryList('countryId');
-					</script>
+						<!-- populate country list -->
+						<script type="text/javascript">
+							populateCountryList('countryId');
+						</script>
 					</div>
 					<div>
 						<label>State</label> <select name="state">
@@ -66,8 +85,8 @@
 			</div>
 			<!-- Modal footer -->
 			<div class="modal-footer">
-				<button id="addSubmitBtn" type="submit" class="btn btn-primary">Add</button>
-				<button id="editSubmitBtn" type="submit" class="btn btn-info" style="display: none;">Save Edit</button>
+				<button id="addSubmitBtn" class="btn btn-primary">Add</button>
+				<button id="editSubmitBtn" class="btn btn-info" style="display: none;">Save Edit</button>
 				<button class="btn btn-secondary" data-dismiss="modal">Close</button>
 			</div>
 		</div>

@@ -1,25 +1,37 @@
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
 }
+
 .container {
   min-height: 43vh;
   margin-top: 30px;
   margin-bottom: 35px;
 }
+
 /* used in bootstrap modal froms */
+
 #formId div {
   padding-top: 10px;
   padding-bottom: 10px;
+  color: #666;
 }
-@media screen and (max-width: 580px) {
-  /* To be remove */
-  #formId input, select {
-    width: 100%;
-  }
-  #formId label {
-    font-weight: bold;
-  }
 
+#formId input, #formId select, #formId textarea {
+  height: 30px;
+}
+#formId input, select:only-of-type {
+  width: 100%;
+}
+#formId label {
+  font-weight: bold;
+  width: 100%;
+}
+#formId > div:hover {
+  color: #100;
+  background: #ffe;
+}
+
+@media screen and (max-width: 580px) {
   .display-3-res {
     font-size: 50px;
     font-weight: lighter;
@@ -32,19 +44,6 @@
 }
 
 @media screen and (min-width: 580px) {
-  /* To be remove */
-  #formId input, select {
-    width: 70%;
-  }
-  #formId label {
-    font-weight: bold;
-    width: 20%;
-  }
-  #formId div:hover {
-    color: blue;
-    background: #ffe;
-  }
-
   .container {
     box-shadow: 2px 2px 5px 5px #eee;
     margin-top: 40px;
@@ -52,7 +51,6 @@
     padding-top: 15px;
     padding-bottom: 15px;
   }
-
   .display-3-res {
     font-size: 4.5rem;
     font-weight: 300;
@@ -84,25 +82,37 @@
   width: 15vh;
   height: 15vh;
   margin: -7.5vh 0 0 -7.5vh;
-  border: 2vh solid #003366;
+  border: 2vh solid #3498db;
   border-radius: 50%;
-  border-top: 2vh solid #3498db;
-  border-bottom: 2vh solid #3498db;
+  border-top: 2vh solid #003366;
   -webkit-animation: spin 2s linear infinite;
   animation: spin 2s linear infinite;
 }
 
 @-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  50% { -webkit-transform: rotate(180deg); }
-  100% { -webkit-transform: rotate(360deg); }
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  50% { transform: rotate(180deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
+
 .logoText {
   color: blue;
   font-family: Arial, Helvetica, sans-serif;

@@ -23,7 +23,7 @@ function removeLoadingIcon(id) {
 /* To check loggedin or not */
 var onlyLoggedIn = function($location, $q, $rootScope) {
   var deferred = $q.defer();
-  // $rootScope.isloggedIn = false;//set to false
+  // $rootScope.isloggedIn = true;/*uncomment to disable security*/
   if ($rootScope.isloggedIn) {
     deferred.resolve();
   } else {
@@ -38,41 +38,41 @@ var onlyLoggedIn = function($location, $q, $rootScope) {
 myApp.config(function($routeProvider, $locationProvider) {
   $routeProvider
     .when("/", {
-      title: "Al Imdaad Society | Serving The Needy Round The Clock",
+      title: "Alimdaad Society | Serving The Needy Round The Clock",
       templateUrl: "/templates/home.html",
       controller: "homeCtlr"
     })
     .when("/About", {
-      title: "About | AlimdaadSociety.org",
+      title: "About - AlimdaadSociety.org",
       templateUrl: "/templates/about.html"
     })
     .when("/Donate", {
-      title: "Donate | AlimdaadSociety.org",
+      title: "Donate - AlimdaadSociety.org",
       templateUrl: "/templates/donate.html"
     })
     .when("/VerifyDonation", {
       templateUrl: "/templates/verifyDonation.html"
     })
     .when("/ZakathCalculator", {
-      title: "Zakath Calculator | AlimdaadSociety.org",
+      title: "Zakath Calculator - AlimdaadSociety.org",
       templateUrl: "/templates/zakathCalc.html"
     })
     .when("/Gallery", {
-      title: "Gallery | AlimdaadSociety.org",
+      title: "Gallery - AlimdaadSociety.org",
       templateUrl: "/templates/gallery.html"
     })
     .when("/Login", {
-      title: "Login | AlimdaadSociety.org",
+      title: "Login - AlimdaadSociety.org",
       templateUrl: "/templates/login.html",
       controller: "loginCtlr"
     })
     .when("/Register", {
-      title: "Register | AlimdaadSociety.org",
+      title: "Register - AlimdaadSociety.org",
       templateUrl: "/templates/register.html",
       controller: "registerCtlr"
     })
     .when("/Logout", {
-      title: "Logout | AlimdaadSociety.org",
+      title: "Logout - AlimdaadSociety.org",
       templateUrl: "/templates/login.html",
       controller: "logoutCtlr",
       resolve: {
@@ -80,14 +80,14 @@ myApp.config(function($routeProvider, $locationProvider) {
       }
     })
     .when("/secure/Dashboard", {
-      title: "Dashboard | AlimdaadSociety.org",
+      title: "Dashboard - AlimdaadSociety.org",
       templateUrl: "/secureTemplates/dashboard.html",
       resolve: {
         loggedIn: onlyLoggedIn
       }
     })
     .when("/secure/Contributors", {
-      title: "Contributors | AlimdaadSociety.org",
+      title: "Contributors - AlimdaadSociety.org",
       templateUrl: "/secureTemplates/Contributors.html",
       controller: "contributorCtlr",
       resolve: {
@@ -95,7 +95,7 @@ myApp.config(function($routeProvider, $locationProvider) {
       }
     })
     .when("/secure/ContributorPayments/:id", {
-      title: "ContributorPayments | AlimdaadSociety.org",
+      title: "ContributorPayments - AlimdaadSociety.org",
       templateUrl: "/secureTemplates/ContributorPayments.html",
       controller: "contributorPaymentsCtlr",
       resolve: {
@@ -103,14 +103,14 @@ myApp.config(function($routeProvider, $locationProvider) {
       }
     })
     .when("/secure/UnderDevlopment", {
-      title: "UnderDevlopment | AlimdaadSociety.org",
+      title: "UnderDevlopment - AlimdaadSociety.org",
       template: "<div class=\"d-flex text-center align-items-center display-4\">Application under Development</div>",
       resolve: {
         loggedIn: onlyLoggedIn
       },
     })
     .otherwise({
-      title: "Page Not Found | AlimdaadSociety.org",
+      title: "Page Not Found - AlimdaadSociety.org",
       template: "<h1 class=\"text-center\">Oops! Page Not Found</h1>"
     });
 
@@ -231,7 +231,7 @@ myApp.controller("zakathCtlr", function($scope) {
     var prop = Number($scope.prop || 0);
     var ocredit = Number($scope.ocredit || 0);
     var debts = Number($scope.debts || 0);
-    var odebts = Number($scope.odebts || 0);
+    var odebts = Number($scope.odebts |- 0);
 
     $scope.zakatable = tcash + balance + fd + shares + bond + lic_pli + pf + gold + silver + money_owed + business + cash + prop + ocredit - debts - odebts;
     $scope.payable = 0.025 * $scope.zakatable;
