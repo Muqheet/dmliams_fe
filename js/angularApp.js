@@ -38,41 +38,41 @@ var onlyLoggedIn = function($location, $q, $rootScope) {
 myApp.config(function($routeProvider, $locationProvider) {
   $routeProvider
     .when("/", {
-      title: "Alimdaad Society | Serving The Needy Round The Clock",
+      title: "AlimdaadSociety.org - Serving The Needy Round The Clock - Charitable Trust in India",
       templateUrl: "/templates/home.html",
       controller: "homeCtlr"
     })
     .when("/About", {
-      title: "About - AlimdaadSociety.org",
+      title: "About - AlimdaadSociety.org - Charitable Trust in India",
       templateUrl: "/templates/about.html"
     })
     .when("/Donate", {
-      title: "Donate - AlimdaadSociety.org",
+      title: "Donate - AlimdaadSociety.org - Charitable Trust in India",
       templateUrl: "/templates/donate.html"
     })
     .when("/VerifyDonation", {
       templateUrl: "/templates/verifyDonation.html"
     })
     .when("/ZakathCalculator", {
-      title: "Zakath Calculator - AlimdaadSociety.org",
+      title: "Zakath Calculator - AlimdaadSociety.org - Charitable Trust in India",
       templateUrl: "/templates/zakathCalc.html"
     })
     .when("/Gallery", {
-      title: "Gallery - AlimdaadSociety.org",
+      title: "Gallery - AlimdaadSociety.org - Charitable Trust in India",
       templateUrl: "/templates/gallery.html"
     })
     .when("/Login", {
-      title: "Login - AlimdaadSociety.org",
+      title: "Login - AlimdaadSociety.org - Charitable Trust in India",
       templateUrl: "/templates/login.html",
       controller: "loginCtlr"
     })
     .when("/Register", {
-      title: "Register - AlimdaadSociety.org",
+      title: "Register - AlimdaadSociety.org - Charitable Trust in India",
       templateUrl: "/templates/register.html",
       controller: "registerCtlr"
     })
     .when("/Logout", {
-      title: "Logout - AlimdaadSociety.org",
+      title: "Logout - AlimdaadSociety.org - Charitable Trust in India",
       templateUrl: "/templates/login.html",
       controller: "logoutCtlr",
       resolve: {
@@ -80,14 +80,14 @@ myApp.config(function($routeProvider, $locationProvider) {
       }
     })
     .when("/secure/Dashboard", {
-      title: "Dashboard - AlimdaadSociety.org",
+      title: "Dashboard - AlimdaadSociety.org - Charitable Trust in India",
       templateUrl: "/secureTemplates/dashboard.html",
       resolve: {
         loggedIn: onlyLoggedIn
       }
     })
     .when("/secure/Contributors", {
-      title: "Contributors - AlimdaadSociety.org",
+      title: "Contributors - AlimdaadSociety.org - Charitable Trust in India",
       templateUrl: "/secureTemplates/Contributors.html",
       controller: "contributorCtlr",
       resolve: {
@@ -95,7 +95,7 @@ myApp.config(function($routeProvider, $locationProvider) {
       }
     })
     .when("/secure/ContributorPayments/:id", {
-      title: "ContributorPayments - AlimdaadSociety.org",
+      title: "ContributorPayments - AlimdaadSociety.org - Charitable Trust in India",
       templateUrl: "/secureTemplates/ContributorPayments.html",
       controller: "contributorPaymentsCtlr",
       resolve: {
@@ -103,14 +103,14 @@ myApp.config(function($routeProvider, $locationProvider) {
       }
     })
     .when("/secure/UnderDevlopment", {
-      title: "UnderDevlopment - AlimdaadSociety.org",
+      title: "UnderDevlopment - AlimdaadSociety.org - Charitable Trust in India",
       template: "<div class=\"d-flex text-center align-items-center display-4\">Application under Development</div>",
       resolve: {
         loggedIn: onlyLoggedIn
       },
     })
     .otherwise({
-      title: "Page Not Found - AlimdaadSociety.org",
+      title: "Page Not Found - AlimdaadSociety.org - Charitable Trust in India",
       template: "<h1 class=\"text-center\">Oops! Page Not Found</h1>"
     });
 
