@@ -23,7 +23,7 @@ function removeLoadingIcon(id) {
 /* To check loggedin or not */
 var onlyLoggedIn = function($location, $q, $rootScope) {
   var deferred = $q.defer();
-  // $rootScope.isloggedIn = true;/*uncomment to disable security*/
+  $rootScope.isloggedIn = true;/*uncomment to disable security*/
   if ($rootScope.isloggedIn) {
     deferred.resolve();
   } else {
