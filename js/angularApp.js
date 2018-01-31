@@ -2,7 +2,8 @@ var myApp = angular.module("myApp", ["ngRoute", "ngResource", "ngAnimate"]);
 
 /*Global variables*/
 var isloggedIn;
-var domainName = 'http://localhost:8090'; //url of backend domain for rest api
+var domainName = 'https://alimdaad.herokuapp.com';
+// var domainName = 'http://localhost:8090'; //url of backend domain for rest api
 var JwtHeader = '';
 function getJwtHeader() {
   return JwtHeader;
