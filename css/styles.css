@@ -74,7 +74,7 @@
 }
 
 .imgLoading {
-  background: url('img/loading2_circlefill.svg');
+  background: transparent url('/img/loading2_circlefill.svg') center no-repeat;
 }
 
 .loader, #load {
