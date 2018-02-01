@@ -24,7 +24,7 @@ function removeLoadingIcon(id) {
 /* To check loggedin or not */
 var onlyLoggedIn = function($location, $q, $rootScope) {
   var deferred = $q.defer();
-  $rootScope.isloggedIn = true;/*uncomment to disable security*/
+  // $rootScope.isloggedIn = true;/*uncomment to disable security*/
   if ($rootScope.isloggedIn) {
     deferred.resolve();
   } else {
@@ -118,11 +118,22 @@ myApp.config(function($routeProvider, $locationProvider) {
   $locationProvider.html5Mode(true);
 });
 myApp.run(['$rootScope', function($rootScope) {
-    $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
-        document.title = current.$$route.title;
-    });
-}]);
 
+  $rootScope.$on('$routeChangeSuccess', function(event, current, previous) {
+    document.title = current.$$route.title;
+  });
+
+  $rootScope.stateIsLoading = false;
+  $rootScope.$on('$routeChangeStart', function() {
+    $rootScope.stateIsLoading = true;
+  });
+  $rootScope.$on('$routeChangeSuccess', function() {
+    $rootScope.stateIsLoading = false;
+  });
+  $rootScope.$on('$routeChangeError', function() {
+    //catch error
+  });
+}]);
 //*****************************Home************************************
 myApp.controller("homeCtlr", function($scope, $location, $anchorScroll) {
 

@@ -201,7 +201,7 @@
 .mainHeading {
   font-weight: bold;
   font-family: raleway_thin, Arial;
-  background: linear-gradient(#999, #ddd);
+  background: linear-gradient(to left, #659, #ddd);
   color: rgba(0, 0, 0, 1);
   text-transform: uppercase;
   font-size: 35px;

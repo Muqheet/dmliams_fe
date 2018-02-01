@@ -68,6 +68,7 @@
   <div ng-include="header"></div>
   <!-- View injected Here -->
   <section ng-view class="container"></section>
+  <section ng-if="stateIsLoading" class="load"></section>
   <!-- footer -->
   <div ng-include="footer"></div>
 </body>
