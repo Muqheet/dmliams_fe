@@ -19,6 +19,34 @@
   <!-- CSS Styles -->
   <link rel="stylesheet" href="/css/styles.css" />
 
+
+  <!-- <script type="text/javascript">
+    document.onreadystatechange = function() {
+      var state = document.readyState
+      if (state == 'interactive') {
+        /* document.getElementById('contents').style.visibility = "hidden"; */
+      } else if (state == 'complete') {
+        setTimeout(function() {
+          /* document.getElementById('interactive'); */
+          document.getElementById('load').style.visibility = "hidden";
+          /* document.getElementById('contents').style.visibility = "visible"; */
+        }, 1000);
+      }
+    }
+  </script> -->
+</head>
+
+<body>
+  <!-- To show loading icon -->
+  <!-- <div id="load"></div> -->
+  <!-- header -->
+  <div ng-include="header"></div>
+  <!-- View injected Here -->
+  <section ng-if="!stateIsLoading" ng-view class="container"></section>
+  <section ng-if="stateIsLoading" class="container"><div id="load" class="text-center"></div></section>
+  <!-- footer -->
+  <div ng-include="footer"></div>
+
   <!-- jQuery library -->
   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
   <script src="/js/jquery.min.js"></script>
@@ -45,32 +73,6 @@
   <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script> -->
   <script src="/js/bootstrap.min.js"></script>
 
-  <!-- <script type="text/javascript">
-    document.onreadystatechange = function() {
-      var state = document.readyState
-      if (state == 'interactive') {
-        /* document.getElementById('contents').style.visibility = "hidden"; */
-      } else if (state == 'complete') {
-        setTimeout(function() {
-          /* document.getElementById('interactive'); */
-          document.getElementById('load').style.visibility = "hidden";
-          /* document.getElementById('contents').style.visibility = "visible"; */
-        }, 1000);
-      }
-    }
-  </script> -->
-</head>
-
-<body>
-  <!-- To show loading icon -->
-  <!-- <div id="load"></div> -->
-  <!-- header -->
-  <div ng-include="header"></div>
-  <!-- View injected Here -->
-  <section ng-if="!stateIsLoading" ng-view class="container"></section>
-  <section ng-if="stateIsLoading" class="container"><div id="load"></div></section>
-  <!-- footer -->
-  <div ng-include="footer"></div>
 </body>
 
 </html>

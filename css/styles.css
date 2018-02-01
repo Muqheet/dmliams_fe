@@ -73,6 +73,10 @@
   font-family: raleway_thin;
 }
 
+.imgLoading {
+  background: url('img/loading2_circlefill.svg');
+}
+
 .loader, #load {
   opacity: 0.8;
   position: absolute;
