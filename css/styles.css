@@ -16,16 +16,6 @@
   color: #666;
 }
 
-#formId input, #formId select, #formId textarea {
-  height: 30px;
-}
-#formId input, select:only-of-type {
-  width: 100%;
-}
-#formId label {
-  font-weight: bold;
-  width: 100%;
-}
 #formId > div:hover {
   color: #100;
   background: #ffe;
@@ -74,6 +64,8 @@
 }
 
 .imgLoading {
+  height: 100%;
+  width: 100%;
   background: transparent url('/img/loading2_circlefill.svg') center no-repeat;
 }
 
@@ -134,7 +126,6 @@
   font-family: Helvetica, Arial, sans-serif;
 } */
 
-/* used for home background stage image */
 
 .amazingslider-nav-1 {
   background: #aaa;
@@ -184,15 +175,6 @@
   }
   50% {
     transform: translate(-1px, 2px) rotate(-1deg);
-  }
-  60% {
-    transform: translate(-3px, 1px) rotate(0deg);
-  }
-  70% {
-    transform: translate(3px, 1px) rotate(-1deg);
-  }
-  80% {
-    transform: translate(-1px, -1px) rotate(1deg);
   }
   90% {
     transform: translate(1px, 2px) rotate(0deg);

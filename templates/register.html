@@ -15,7 +15,7 @@
     <form>
       <div class="form-group input-group">
         <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
-        <input class="form-control" placeholder="Name" required pattern="[A-Za-z. ]{3,30}" title="Allowed only [A-Z a-z . ] characters of length 3 to 30" />
+        <input type="text" class="form-control" placeholder="Name" required pattern="[A-Za-z. ]{3,30}" title="Allowed characters [A-Z a-z . ] of length 3 to 30" />
       </div>
       <div class="form-group input-group">
         <span class="input-group-addon"><i class="fa fa-phone-square fa-fw"></i></span>
@@ -23,25 +23,24 @@
           <option value="91" selected>+91 (IN)</option>
           <option value="1">+1 (US)</option>
         </select>
-        <input class="form-control" placeholder="Mobile" required pattern="[0-9]{6-12}" />
+        <input type="number" class="form-control" placeholder="Mobile" required pattern="[0-9]{6-12}" />
 
       </div>
       <small class="form-text text-muted">You'll use this Email when you log in and if you ever need to reset your password.</small>
       <div class="form-group input-group">
         <span class="input-group-addon"><i class="fa fa-envelope fa-fw"></i></span>
-        <input class="form-control" placeholder="Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Email must be in the following order: characters@characters.domain" />
+        <input type="email" class="form-control" placeholder="Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Email must be in the following order: characters@characters.domain" />
       </div>
 
-      <small class="form-text text-muted">Enter the Registration Code obtained from authorized Society Admin (specific to your Email).</small>
+      <small class="form-text text-muted">Enter the Registration Code received in email from authorized Society Admin.</small>
       <div class="form-group input-group">
         <span class="input-group-addon"><i class="fa fa-barcode fa-fw"></i></span>
-        <input class="form-control" placeholder="Registration Code" required pattern="[A-Z0-9]{8}" title="Length must be of 8 digits" />
+        <input type="text" class="form-control" placeholder="Registration Code" required pattern="[A-Z0-9]{8}" title="Length must be of 8 digits" />
       </div>
 
       <div class="form-group input-group">
         <span class="input-group-addon"><i class="fa fa-user-secret fa-fw"></i></span>
-        <input class="form-control" placeholder="Password" required pattern="[a-zA-Z0-9]{8-20}" title="Password must have at least one digit (0-9), one lowercase character (a-z) or one uppercase character(A-Z). It can have minimum 8 characters and maximum 20 characters."
-        />
+        <input type="password" class="form-control" placeholder="Password" required pattern="[a-zA-Z0-9]{8-20}" title="Password must have at least one digit (0-9), one lowercase character (a-z) or one uppercase character(A-Z). It can have minimum 8 characters and maximum 20 characters."/>
       </div>
       <button class="btn btn-primary w-100" id="registerBtn">Register</button>
     </form>

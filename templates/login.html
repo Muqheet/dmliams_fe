@@ -16,14 +16,14 @@
 		<div class="{{loginResultClass}}">{{loginResultMessage}}</div>
 
 		<!-- Password must have at least one digit (0-9), one lowercase character (a-z) or one uppercase character(A-Z). It can have minimum 8 characters and maximum 20 characters. -->
-		<form id="loginForm" ng-submit="formSubmit()" autocomplete="on" novalidate>
+		<form id="loginForm" ng-submit="formSubmit()" autocomplete="on">
 			<div class="form-group input-group">
 				<span class="input-group-addon"><i class="fa fa-envelope fa-fw"></i></span>
-				<input class="form-control" ng-model="email" name="email" placeholder="Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Email must be in the following order: characters@characters.domain"/>
+				<input type="email" class="form-control" ng-model="email" name="email" placeholder="Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Email must be in the following order: characters@characters.domain"/>
 			</div>
 			<div class="form-group input-group">
 				<span class="input-group-addon"><i class="fa fa-user-secret fa-fw"></i></span>
-				<input class="form-control" ng-model="password" name="password" placeholder="Password" type="password" required pattern="[a-z A-Z 0-9]{3,20}" />
+				<input type="password" class="form-control" ng-model="password" name="password" placeholder="Password" required pattern="[a-zA-Z0-9*#/^]{6,20}" title="Allowed characters [a-z A-Z 0-9 * # / ^] of length 6 to 20."/>
 			</div>
 			<button class="btn btn-primary w-100" type="submit" id="loginBtn">Login</button>
 		</form>
