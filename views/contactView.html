@@ -2,22 +2,25 @@
 	$(document).ready(function() {
 			$('#contactForm').submit(function(e) {
 				e.preventDefault();
-				$id = $('#contactSubmitBtn');
-				$id.attr('disabled', 'disabled');
-				$.ajax({
-					url: "",
-					method: "post",
-					data: $('#contactForm').serialize(),
-					success: function(data) {
-						alert('Your message has been posted successfully.');
-					},
-					error: function() {
-						alert('Oops, an error occured while sending.');
-					},
-					complete: function() {
-						$id.removeAttr('disabled');
-					}
-				});
+				if(true){
+					$id = $('#contactSubmitBtn');
+					$id.attr('disabled', 'disabled');
+					$.ajax({
+						url: "",
+						method: "post",
+						data: $('#contactForm').serialize(),
+						success: function(data) {
+							alert('Your message has been posted successfully.');
+						},
+						error: function() {
+							alert('Oops, an error occured while sending.');
+						},
+						complete: function() {
+							$id.removeAttr('disabled');
+						}
+					});
+				}
+
 		});
 	});
 </script>
@@ -38,7 +41,7 @@
 
 				<div class="input-group form-group">
 					<span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
-					<input class="form-control" name="name" placeholder="Enter Your Name" type="text" required pattern="[A-Za-z. ]{3,30}" title="Allowed only [A-Z a-z . ] characters of length 3 to 30" />
+					<input class="form-control" name="name" placeholder="Enter Your Name" type="text" required pattern="[A-Za-z. ]{3,30}" title="Allowed characters [A-Z a-z . ] of length 3 to 30." />
 				</div>
 
 
@@ -49,7 +52,7 @@
 
 				<div class="input-group form-group">
 					<span class="input-group-addon"><i class="fa fa-comment fa-fw"></i></span>
-					<textarea type="text" class="form-control" name="message" placeholder="Enter Your Message" rows="6" required pattern="[A-Za-z. ,]{10,250}" title="Allowed only [A-Z a-z . , ] characters of length between 10 to 250"></textarea>
+					<textarea type="text" class="form-control" name="message" placeholder="Enter Your Message" rows="6" required pattern="[A-Za-z. ,]{10,250}" title="Allowed characters [A-Z a-z . , ] of length 10 to 250"></textarea>
 				</div>
 
 				<input class="btn btn-primary btn-large" type="submit" value="Submit" id="contactSubmitBtn"/>

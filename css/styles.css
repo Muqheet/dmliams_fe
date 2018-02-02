@@ -70,7 +70,7 @@
 }
 
 .loader, #load {
-  opacity: 0.8;
+  opacity: 0.6;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -78,9 +78,9 @@
   width: 15vh;
   height: 15vh;
   margin: -7.5vh 0 0 -7.5vh;
-  border: 2vh solid #3498db;
+  border: 2vh solid #aaa;
   border-radius: 50%;
-  border-top: 2vh solid #003366;
+  border-top: 2vh solid #3498db;
   -webkit-animation: spin 2s linear infinite;
   animation: spin 2s linear infinite;
 }
