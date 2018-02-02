@@ -207,12 +207,12 @@ jQuery(document).ready(function(){
         textpositionmarginbottom:24,
         lightboxshowtitle:false,
         socialmode:"mouseover",
-        shuffle: {
+        threedhorizontal: {
             duration:1500,
-            fallback:"fade",
+            fallback:"slide",
             checked:true
         },
-        transition:"shuffle",
+        transition:"threedhorizontal",
         scalemode:"fill",
         isfullscreen:false,
         textformat: {
