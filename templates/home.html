@@ -1,10 +1,16 @@
 <script>
   //remove container class on homepage to expand across the full width
   $(document).ready(function() {
-    /*remove default container class to exapan across full width*/
+    /*remove default container class to exapand across full width*/
     $('section.container').removeClass();
     $('#galleryCarousel').load('/views/galleryCarouselView.html');
     $('.loader').fadeOut();
+
+
+    showText("#home-h1", "Serving The Needy Round The Clock", 0, 50);
+    $('#home-h2').delay(2000).animate({opacity:1}, 1500);
+    $('#donateStgBtn').delay(2000).animate({opacity:1}, 1500);
+
 
     // //make animation by toglling classes to home BgImage stage
     // $('#donateStgBtn')
@@ -36,11 +42,11 @@
 </script>
 <!-- home -->
 <div class="homeStageBgImg" id="home">
-	<div class="homeStageBgImg-caption p-2">
-		<div class="display-3-res mb-5 font-weight-normal" style="color: #333;">Serving The Needy Round The Clock</div>
-		<div class="mb-5 h3" style="color: #000;">Your Money gets used everyday of the year by the poor...</div>
-		<a href="/Donate" class="btn btn-success btn-lg font-weight-bold rounded-circle p-3 mt-4 mb-3" id="donateStgBtn">It's Time To Donate</a>
-	</div>
+  <div class="homeStageBgImg-caption p-2">
+    <div class="display-3-res mb-5 font-weight-normal" id="home-h1" style="color: #333;"></div>
+    <div class="mb-5 h3" id="home-h2" style="color: #000; opacity: 0;">Your Money gets used everyday of the year by the poor...</div>
+    <a href="/Donate" class="btn btn-success btn-lg font-weight-bold rounded-circle p-3 mt-4 mb-3" id="donateStgBtn" style="opacity:0;">It's Time To Donate</a>
+  </div>
 </div>
 
 <!-- aboutView -->

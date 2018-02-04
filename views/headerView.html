@@ -6,8 +6,8 @@
 
 <nav class="navbar navbar-light text-info navbar-expand-sm font-weight-bold text-center" style="border-bottom: 3px solid #eee;">
 	<!-- To display in medium and above screens -->
-	<li class="d-none d-md-block border rounded border-primary mr-4 logoText">
-		<img src="/img/AlimdaadSociety.svg" alt="" height="70">
+	<li class="d-none d-md-block mr-4">
+		<img src="/img/AlimdaadSociety.svg" alt="" height="70" class="logoText border rounded border-primary">
 	</li>
 
 
@@ -37,15 +37,13 @@
 
 			<li class="nav-item" ng-if="!isloggedIn"><a class="nav-link d-none" href="/Login"><i aria-hidden="true" class="fa fa-sign-in	"></i> Login</a></li>
 			<li class="nav-item" ng-if="isloggedIn"><a class="nav-link" href="/Logout"><i aria-hidden="true" class="fa fa-sign-out	"></i> Logout</a></li>
-			<li class="nav-item dropdown d-none">
+			<!-- <li class="nav-item dropdown d-none">
 				<a class="nav-link dropdown-toggle" href="" id="navbardrop" data-toggle="dropdown">Donate</a>
-
 				<div class="dropdown-menu dropdown-menu-right">
 					<a class="dropdown-item" href="/Donate"><i aria-hidden="true" class="fa fa-money"></i> Donate Now</a>
-					<a class="dropdown-item d-none" href="/VerifyDonation">Verify My Donation</a>
 					<a class="dropdown-item" href="/ZakathCalculator"><i aria-hidden="true" class="fa fa-calculator"></i> Zakath Calculator</a>
 				</div>
-			</li>
+			</li> -->
 		</ul>
 
 		<!-- <ul class="navbar-nav d-none">
@@ -55,13 +53,9 @@
 	</div>
 </nav>
 
-
-
 <div ng-if="isloggedIn">
-	<ul class="nav nav-tabs justify-content-center">
-		<li class="nav-link"><a href="#">Application Users</a></li>
-		<li class="nav-link"><a href="#">My Profile</a></li>
-		<li class="nav-link"><a href="#">Change Password</a></li>
-		<li class="nav-link"><a href="#"></a></li>
+	<ul class="nav nav-tabs justify-content-center bg-light">
+		<li><a href="#" class="nav-link"><i class="fa fa-users"></i> Manage Application Users</a></li>
+		<li><a href="#" class="nav-link"><i class="fa fa-user"></i> My Profile</a></li>
 	</ul>
 </div>

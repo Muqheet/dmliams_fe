@@ -13,17 +13,17 @@
 
 					<div>
 						<label>Payment Amount</label>
-						<input name="payment_amount" required />
+						<input name="payment_amount" class="form-control" required />
 					</div>
 
 					<div>
 						<label>Payment Date</label>
-						<input name="payment_date" type="date" required />
+						<input name="payment_date" type="date" class="form-control" required />
 					</div>
 
 					<div>
 						<label>Payment Description</label>
-						<select name="payment_desc" required>
+						<select name="payment_desc" class="form-control" required>
 							<option value="">-Select-</option>
 							<option value="Zakath">Zakath</option>
 							<option value="sadqa">sadqa</option>
@@ -32,7 +32,7 @@
 
 					<div>
 						<label>Payment Mode</label>
-						<select name="payment_mode" required>
+						<select name="payment_mode" class="form-control" required>
 							<option value="">-Select-</option>
 							<option value="Cash">Cash</option>
 							<option value="Debit/Credit Card">Debit/Credit Card</option>
@@ -42,9 +42,9 @@
 
 					<div>
 						<label>Receipt No</label>
-						<input name="receipt_no" required />
+						<input name="receipt_no" class="form-control" required />
 					</div>
-					<input class="d-none" name="contributorpaymentid" required />
+					<input name="contributorpaymentid" style="display: none;" required />
 				</form>
 			</div>
 			<!-- Modal footer -->

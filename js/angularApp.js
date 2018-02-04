@@ -21,6 +21,12 @@ function removeLoadingIcon(id) {
   $('#'+id).removeAttr('disabled');
   $('#l_ico').remove();
 }
+var showText = function (target, message, index, interval) {
+  if (index < message.length) {
+    $(target).append(message[index++]);
+    setTimeout(function () { showText(target, message, index, interval); }, interval);
+  }
+}
 /* To check loggedin or not */
 var onlyLoggedIn = function($location, $q, $rootScope) {
   var deferred = $q.defer();
@@ -103,9 +109,44 @@ myApp.config(function($routeProvider, $locationProvider) {
         loggedIn: onlyLoggedIn
       }
     })
+    .when("/secure/PensionApplications", {
+      title: "PensionApplications - AlimdaadSociety.org - Charitable Trust in India",
+      templateUrl: "/secureTemplates/PensionApplications.html",
+      resolve: {
+        loggedIn: onlyLoggedIn
+      }
+    })
+    .when("/secure/MarriageApplications", {
+      title: "MarriageApplications - AlimdaadSociety.org - Charitable Trust in India",
+      templateUrl: "/secureTemplates/MarriageApplications.html",
+      resolve: {
+        loggedIn: onlyLoggedIn
+      }
+    })
+    .when("/secure/EducationApplications", {
+      title: "EducationApplications - AlimdaadSociety.org - Charitable Trust in India",
+      templateUrl: "/secureTemplates/EducationApplications.html",
+      resolve: {
+        loggedIn: onlyLoggedIn
+      }
+    })
+    .when("/secure/TreatmentApplications", {
+      title: "TreatmentApplications - AlimdaadSociety.org - Charitable Trust in India",
+      templateUrl: "/secureTemplates/TreatmentApplications.html",
+      resolve: {
+        loggedIn: onlyLoggedIn
+      }
+    })
+    .when("/secure/ReportsAndAnalysis", {
+      title: "ReportsAndAnalysis - AlimdaadSociety.org - Charitable Trust in India",
+      templateUrl: "/secureTemplates/ReportsAndAnalysis.html",
+      resolve: {
+        loggedIn: onlyLoggedIn
+      }
+    })
     .when("/secure/UnderDevlopment", {
       title: "UnderDevlopment - AlimdaadSociety.org - Charitable Trust in India",
-      template: "<div class=\"d-flex text-center align-items-center display-4\">Application under Development</div>",
+      template: "<div class=\"text-center h4 m-4\">This module is under development. Please come back later.</div>",
       resolve: {
         loggedIn: onlyLoggedIn
       },

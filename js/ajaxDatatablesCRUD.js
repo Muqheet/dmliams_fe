@@ -18,7 +18,7 @@ function selectedRowId() {
 }
 
 function createTable(tableData) {
-  $(document).off('click');//Removing any previous click handlers
+  // $(document).off('click');//Removing any previous click handlers
 
   var tid = '#' + tableData.tableId;
   var fid = '#' + tableData.formId;
@@ -96,15 +96,17 @@ function createTable(tableData) {
   }
 
   //Start of Events
+  // $(document).off('clcik', addBtn +" "+ editBtn +" "+ deleteBtn +" "+ deleteSubmitBtn +" "+ addSubmitBtn +" "+ editSubmitBtn);
+
   $('table tbody').off('click').on('click', 'tr', rowSelection);
 
-  $('body').on('click', addBtn, rowAdditionPopup);
-  $('body').on('click', editBtn, rowEditionPopup);
-  $('body').on('click', deleteBtn, rowDeletionPopup);
+  $('body').undelegate(addBtn, 'click').on('click', addBtn, rowAdditionPopup);
+  $('body').undelegate(editBtn, 'click').on('click', editBtn, rowEditionPopup);
+  $('body').undelegate(deleteBtn, 'click').on('click', deleteBtn, rowDeletionPopup);
 
-  $(document).on('click', deleteSubmitBtn, deleteRecord);
-  $(document).on('click', addSubmitBtn, addRecord);
-  $(document).on('click', editSubmitBtn, editRecord);
+  $(document).undelegate(deleteSubmitBtn, 'click').on('click', deleteSubmitBtn, deleteRecord);
+  $(document).undelegate(addSubmitBtn, 'click').on('click', addSubmitBtn, addRecord);
+  $(document).undelegate(editSubmitBtn, 'click').on('click', editSubmitBtn, editRecord);
 
   $(document).on('shown.bs.modal', oprModal, function() {
     console.log('modal opened');
@@ -153,7 +155,7 @@ function createTable(tableData) {
   }
 function validateForm() {
   $(fid).validate({
-      // ignore: '*',
+      ignore: '*',
       errorClass: "invalid-feedback font-weight-normal",
       validClass: "valid-feedback font-weight-normal",
       highlight: function(element, errorClass, validClass) {
@@ -268,12 +270,23 @@ function validateForm() {
     var rowData = dataTableObj.row('tr.' + rowClickedClass).data();
     $(fid + ' :input').each(function() {
       var ip = this;
+      /* To add compatible Object.entries support in older environments */
+      if (!Object.entries)
+        Object.entries = function(obj) {
+          var ownProps = Object.keys(obj),
+            i = ownProps.length,
+            resArray = new Array(i); // preallocate the Array
+          while (i--)
+            resArray[i] = [ownProps[i], obj[ownProps[i]]];
+
+          return resArray;
+        };
       $(Object.entries(rowData)).each(function() {
         var ip1 = this;
-        console.log(ip1);
-        console.log($(ip).attr('name'));
+        /* console.log(ip1); */
+        /* console.log($(ip).attr('name')); */
         if (ip1[0] === $(ip).attr('name')) { /*at index'0' get key & at index '1' get value*/
-          console.log('done');
+          // console.log('done');
           $(ip).val(ip1[1]);
         }
       });
