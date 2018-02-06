@@ -32,14 +32,14 @@
         <input type="email" class="form-control" placeholder="Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Email must be in the following order: characters@characters.domain" />
       </div>
 
-      <small class="form-text text-muted">Enter the Registration Code received in email from authorized Society Admin.</small>
+      <small class="form-text text-muted">Enter the Signup Token sent to your email by authorized society administrators.</small>
       <div class="form-group input-group">
-        <span class="input-group-addon"><i class="fa fa-barcode fa-fw"></i></span>
-        <input type="text" class="form-control" placeholder="Registration Code" required pattern="[A-Z0-9]{8}" title="Length must be of 8 digits" />
+        <span class="input-group-addon"><i class="fa fa-user-secret fa-fw"></i></span>
+        <input type="text" class="form-control" placeholder="Signup Token" required pattern="[A-Z0-9]{8}" title="Length must be of 8 digits" />
       </div>
 
       <div class="form-group input-group">
-        <span class="input-group-addon"><i class="fa fa-user-secret fa-fw"></i></span>
+        <span class="input-group-addon"><i class="fa fa-lock fa-fw"></i></span>
         <input type="password" class="form-control" placeholder="Password" required pattern="[a-zA-Z0-9]{8-20}" title="Password must have at least one digit (0-9), one lowercase character (a-z) or one uppercase character(A-Z). It can have minimum 8 characters and maximum 20 characters."/>
       </div>
       <button class="btn btn-primary w-100" id="registerBtn">Register</button>

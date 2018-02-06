@@ -2,8 +2,8 @@ var myApp = angular.module("myApp", ["ngRoute", "ngResource", "ngAnimate"]);
 
 /*Global variables*/
 var isloggedIn;
-var domainName = 'https://alimdaad.herokuapp.com';
-// var domainName = 'http://localhost:8090'; //url of backend domain for rest api
+var domainName = 'https://alimdaadsociety.herokuapp.com';
+// var domainName = 'localhost:8090'; //url of backend domain for rest api
 var JwtHeader = '';
 function getJwtHeader() {
   return JwtHeader;
@@ -50,36 +50,40 @@ myApp.config(function($routeProvider, $locationProvider) {
       controller: "homeCtlr"
     })
     .when("/About", {
-      title: "About - AlimdaadSociety.org - Charitable Trust in India",
+      title: "About - AlimdaadSociety.org | Charitable Trust in India",
       templateUrl: "/templates/about.html"
     })
     .when("/Donate", {
-      title: "Donate - AlimdaadSociety.org - Charitable Trust in India",
+      title: "Donate - AlimdaadSociety.org | Charitable Trust in India",
       templateUrl: "/templates/donate.html"
     })
     .when("/VerifyDonation", {
       templateUrl: "/templates/verifyDonation.html"
     })
     .when("/ZakathCalculator", {
-      title: "Zakath Calculator - AlimdaadSociety.org - Charitable Trust in India",
+      title: "Zakath Calculator - AlimdaadSociety.org | Charitable Trust in India",
       templateUrl: "/templates/zakathCalc.html"
     })
     .when("/Gallery", {
-      title: "Gallery - AlimdaadSociety.org - Charitable Trust in India",
+      title: "Gallery - AlimdaadSociety.org | Charitable Trust in India",
       templateUrl: "/templates/gallery.html"
     })
     .when("/Login", {
-      title: "Login - AlimdaadSociety.org - Charitable Trust in India",
+      title: "Login - AlimdaadSociety.org | Charitable Trust in India",
       templateUrl: "/templates/login.html",
       controller: "loginCtlr"
     })
+    .when("/ChangePassword/:token", {
+      title: "ChangePassword - AlimdaadSociety.org | Charitable Trust in India",
+      templateUrl: "/templates/ChangePassword.html",
+    })
     .when("/Register", {
-      title: "Register - AlimdaadSociety.org - Charitable Trust in India",
+      title: "Register - AlimdaadSociety.org | Charitable Trust in India",
       templateUrl: "/templates/register.html",
       controller: "registerCtlr"
     })
     .when("/Logout", {
-      title: "Logout - AlimdaadSociety.org - Charitable Trust in India",
+      title: "Logout - AlimdaadSociety.org | Charitable Trust in India",
       templateUrl: "/templates/login.html",
       controller: "logoutCtlr",
       resolve: {
@@ -87,14 +91,14 @@ myApp.config(function($routeProvider, $locationProvider) {
       }
     })
     .when("/secure/Dashboard", {
-      title: "Dashboard - AlimdaadSociety.org - Charitable Trust in India",
+      title: "Dashboard - AlimdaadSociety.org | Charitable Trust in India",
       templateUrl: "/secureTemplates/dashboard.html",
       resolve: {
         loggedIn: onlyLoggedIn
       }
     })
     .when("/secure/Contributors", {
-      title: "Contributors - AlimdaadSociety.org - Charitable Trust in India",
+      title: "Contributors - AlimdaadSociety.org | Charitable Trust in India",
       templateUrl: "/secureTemplates/Contributors.html",
       controller: "contributorCtlr",
       resolve: {
@@ -102,7 +106,7 @@ myApp.config(function($routeProvider, $locationProvider) {
       }
     })
     .when("/secure/ContributorPayments/:id", {
-      title: "ContributorPayments - AlimdaadSociety.org - Charitable Trust in India",
+      title: "ContributorPayments - AlimdaadSociety.org | Charitable Trust in India",
       templateUrl: "/secureTemplates/ContributorPayments.html",
       controller: "contributorPaymentsCtlr",
       resolve: {
@@ -110,49 +114,49 @@ myApp.config(function($routeProvider, $locationProvider) {
       }
     })
     .when("/secure/PensionApplications", {
-      title: "PensionApplications - AlimdaadSociety.org - Charitable Trust in India",
+      title: "PensionApplications - AlimdaadSociety.org | Charitable Trust in India",
       templateUrl: "/secureTemplates/PensionApplications.html",
       resolve: {
         loggedIn: onlyLoggedIn
       }
     })
     .when("/secure/MarriageApplications", {
-      title: "MarriageApplications - AlimdaadSociety.org - Charitable Trust in India",
+      title: "MarriageApplications - AlimdaadSociety.org | Charitable Trust in India",
       templateUrl: "/secureTemplates/MarriageApplications.html",
       resolve: {
         loggedIn: onlyLoggedIn
       }
     })
     .when("/secure/EducationApplications", {
-      title: "EducationApplications - AlimdaadSociety.org - Charitable Trust in India",
+      title: "EducationApplications - AlimdaadSociety.org | Charitable Trust in India",
       templateUrl: "/secureTemplates/EducationApplications.html",
       resolve: {
         loggedIn: onlyLoggedIn
       }
     })
     .when("/secure/TreatmentApplications", {
-      title: "TreatmentApplications - AlimdaadSociety.org - Charitable Trust in India",
+      title: "TreatmentApplications - AlimdaadSociety.org | Charitable Trust in India",
       templateUrl: "/secureTemplates/TreatmentApplications.html",
       resolve: {
         loggedIn: onlyLoggedIn
       }
     })
     .when("/secure/ReportsAndAnalysis", {
-      title: "ReportsAndAnalysis - AlimdaadSociety.org - Charitable Trust in India",
+      title: "ReportsAndAnalysis - AlimdaadSociety.org | Charitable Trust in India",
       templateUrl: "/secureTemplates/ReportsAndAnalysis.html",
       resolve: {
         loggedIn: onlyLoggedIn
       }
     })
     .when("/secure/UnderDevlopment", {
-      title: "UnderDevlopment - AlimdaadSociety.org - Charitable Trust in India",
+      title: "UnderDevlopment - AlimdaadSociety.org | Charitable Trust in India",
       template: "<div class=\"text-center h4 m-4\">This module is under development. Please come back later.</div>",
       resolve: {
         loggedIn: onlyLoggedIn
       },
     })
     .otherwise({
-      title: "Page Not Found - AlimdaadSociety.org - Charitable Trust in India",
+      title: "Page Not Found - AlimdaadSociety.org | Charitable Trust in India",
       template: "<h1 class=\"text-center\">Oops! Page Not Found</h1>"
     });
 

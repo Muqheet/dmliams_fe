@@ -22,7 +22,7 @@
 				<input type="email" class="form-control" ng-model="email" name="email" placeholder="Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Email must be in the following order: characters@characters.domain"/>
 			</div>
 			<div class="form-group input-group">
-				<span class="input-group-addon"><i class="fa fa-user-secret fa-fw"></i></span>
+				<span class="input-group-addon"><i class="fa fa-lock fa-fw"></i></span>
 				<input type="password" class="form-control" ng-model="password" name="password" placeholder="Password" required pattern="[a-zA-Z0-9*#/^]{6,20}" title="Allowed characters [a-z A-Z 0-9 * # / ^] of length 6 to 20."/>
 			</div>
 			<button class="btn btn-primary w-100" type="submit" id="loginBtn">Login</button>
@@ -43,20 +43,20 @@
         </button>
       </div>
       <div class="modal-body">
+				<div class="alert alert-info" id="fp-alert" style="display: none;">
+					Check your inbox for the next steps. If you don't receive an email, and it's not in your spam folder this could mean you signed up with a different address.
+				</div>
 
 				<form class="">
-					<div class="alert alert-info" id="fp-alert" style="display: none;">
-						Check your inbox for the next steps. If you don't receive an email, and it's not in your spam folder this could mean you signed up with a different address.
-					</div>
 					<div class="form-group">
 						<label for="">Enter your email address below and we'll send you a link to reset your password.</label>
-						<input type="email" name="fp-email" placeholder="Email" class="form-control">
+						<input type="email" id="fp-email" placeholder="Email" class="form-control">
 					</div>
 				</form>
 			</div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" id="fp-reset">Submit</button>
+        <button type="button" class="btn" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="fp-submit">Submit</button>
       </div>
     </div>
   </div>
@@ -64,22 +64,34 @@
 
 <script>
 	$(document).ready(function() {
-		$('#fp-reset').click(function() {
+
+		$('#fp-modal').on('shown.bs.modal', function() {
+			$('#fp-modal input').eq(0).focus();
+		});
+		$('#fp-modal').on('hidden.bs.modal', function() {
+			$('div#fp-alert').hide();
+		});
+
+		$('#fp-submit').click(function() {
 			$(this).attr('disabled', 'disabled');
 			currentBtnId = $(this).attr('id');
 	    addLoadingIcon(currentBtnId);
+			var $email = $('#fp-email');
+			var data = {email: $email.val()};
 			$.ajax({
-				url: domainName+"/ForgotPassword",
-				data: "{}",
+				url: domainName+"/auth/ForgotPassword",
+				data: JSON.stringify(data),
+				contentType: "application/json; charset=utf-8",
 				method: "post",
 				success: function(data) {
-					$('#fp-alert').show().delay('4000').remove();
+					$('div#fp-alert').show();
 				},
-				error: function(XMLHttpRequest, textStatus, errorThrown) {
-					alert('An error occured ' + errorThrown);
+				error: function(jqXhr, textStatus, errorThrown) {
+					alert('An error occured, ' +JSON.parse(jqXhr.responseText).message);
 				},
 				complete: function() {
 					removeLoadingIcon(currentBtnId);
+					$email.val('');
 				}
 			});
 		});
