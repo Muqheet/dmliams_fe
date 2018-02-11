@@ -90,9 +90,36 @@ function createTable(tableData) {
         [10, 20, 50, 100, 'All']
       ],
       destroy: true,
+      colReorder: true,/*Click-and-drag column reordering.*/
+      dom: '<<"float-left"l>f<"d-md-flex justify-content-center"B><t>ip>',
+        buttons: [
+          'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            {
+                extend: 'print',
+                exportOptions: {
+                    columns: ':visible',
+                    page: 'current'
+                }
+            },
+            {
+                extend: 'colvis',
+                postfixButtons: [ 'colvisRestore' ]
+            }
+        ]
       /* scrollY: '100vh',/* To scroll vertically */
       /*scrollCollapse: true*/
     });
+
+    // inser export buttons
+
+    // var tableTools = new $.fn.DataTable.TableTools(dataTableObj, {
+    //   'sSwfPath': '//cdn.datatables.net/tabletools/2.2.4/swf/copy_csv_xls_pdf.swf'
+    // });
+    // $(tableTools.fnContainer()).insertBefore('#datatable_wrapper');
+
+
   }
 
   //Start of Events
